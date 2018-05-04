@@ -6,6 +6,8 @@
 package centromedicopoo;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +15,8 @@ import java.util.Scanner;
  */
 public class CentroMedicoPOO {
 
+    // List utentes = new ArrayList();
+    
     /**
      * @param args the command line arguments
      */
@@ -29,8 +33,12 @@ public class CentroMedicoPOO {
         System.out.print("\nNome: ");
         utenteTeste.setNome(entradaDados.nextLine());
         
+        System.out.print("\nIdade: ");
+        utenteTeste.setIdade(entradaDados.nextInt());
+        
         /// TESTES ///
         System.out.print(utenteTeste.getNome());
+        System.out.print(utenteTeste.getIdade());
         
     }
     
