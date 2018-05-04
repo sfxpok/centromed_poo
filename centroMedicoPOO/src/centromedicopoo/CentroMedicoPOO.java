@@ -5,10 +5,6 @@
  */
 package centromedicopoo;
 
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-
 /**
  *
  * @author r
@@ -21,25 +17,12 @@ public class CentroMedicoPOO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        adicionarUtente();
-    }
-    
-    public static void adicionarUtente() {
-        
-        Scanner entradaDados = new Scanner(System.in, "Cp1252");
-        
-        Utente utenteTeste = new Utente();
-        
-        System.out.print("\nNome: ");
-        utenteTeste.setNome(entradaDados.nextLine());
-        
-        System.out.print("\nIdade: ");
-        utenteTeste.setIdade(entradaDados.nextInt());
-        
-        /// TESTES ///
-        System.out.print(utenteTeste.getNome());
-        System.out.print(utenteTeste.getIdade());
-        
+
+        // MENU DE SELECÇÃO POR FAZER
+        // CentroMedico.terminalPrompt();
+
+        CentroMedico.adicionarUtente();
+        CentroMedico.adicionarMedico();
     }
     
 }
