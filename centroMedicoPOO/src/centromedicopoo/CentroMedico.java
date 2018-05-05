@@ -232,10 +232,36 @@ public class CentroMedico extends CentroMedicoPOO {
 
     public static void menuListarMedicos() {
 
-        System.out.println("----- MENU DE LISTAGEM DE MÉDICOS -----\n"
-                +"1 - Listar médicos com uma dada especialidade\n"
-                +"2 - Listar todos os médicos (ordenados pela classificação média)\n"
-                +"3 - Voltar atrás\n");
+        boolean sair = true;
+
+        do {
+
+            System.out.println("----- MENU DE LISTAGEM DE MÉDICOS -----\n"
+                    + "1 - Listar médicos com uma dada especialidade\n"
+                    + "2 - Listar todos os médicos (ordenados pela classificação média)\n"
+                    + "3 - Voltar atrás\n");
+
+            Scanner entradaDados = new Scanner(System.in, "Cp1252");
+            int op;
+
+            System.out.print("Escolha uma opção: ");
+            op = entradaDados.nextInt();
+
+            switch(op) {
+                case 1:
+                    //
+                    break;
+                case 2:
+                    listarInfoMedicos();
+                    break;
+                case 3:
+                    sair = false;
+                    break;
+                default:
+                    System.out.println("\nValor inválido\n");
+            }
+
+        } while(sair);
 
     }
 
