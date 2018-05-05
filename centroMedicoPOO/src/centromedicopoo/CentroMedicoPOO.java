@@ -23,6 +23,9 @@ public class CentroMedicoPOO {
 
         CentroMedico.adicionarUtente();
         CentroMedico.adicionarMedico();
+
+        CentroMedico.listarUtentes();
+        CentroMedico.listarMedicos();
     }
     
 }

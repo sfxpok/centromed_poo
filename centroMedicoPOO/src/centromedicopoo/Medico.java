@@ -17,5 +17,53 @@ public class Medico extends Individuo {
     private String especialidade;
     private double avaliacaoMedia;
     private int consultasDia;
-    
+
+    // Construtores
+
+    public Medico(String nome, int idade, int numeroMedico, String especialidade, double avaliacaoMedia, int consultasDia) {
+        super(nome, idade);
+        this.numeroMedico = numeroMedico;
+        this.especialidade = especialidade;
+        this.avaliacaoMedia = avaliacaoMedia;
+        this.consultasDia = consultasDia;
+    }
+
+    public Medico() {
+
+    }
+
+    //
+
+    public int getNumeroMedico() {
+        return numeroMedico;
+    }
+
+    public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public double getAvaliacaoMedia() {
+        return avaliacaoMedia;
+    }
+
+    public int getConsultasDia() {
+        return consultasDia;
+    }
+
+    public void setNumeroMedico(int numeroMedico) {
+        this.numeroMedico = numeroMedico;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    public void setAvaliacaoMedia(double avaliacaoMedia) {
+        this.avaliacaoMedia = avaliacaoMedia;
+    }
+
+    public void setConsultasDia(int consultasDia) {
+        this.consultasDia = consultasDia;
+    }
+
 }

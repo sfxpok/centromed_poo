@@ -8,6 +8,7 @@ package centromedicopoo;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -21,40 +22,76 @@ public class CentroMedico extends CentroMedicoPOO {
     public static void adicionarUtente() {
         
         Scanner entradaDados = new Scanner(System.in, "Cp1252");
+        Random geradorAleatorio = new Random();
         
         Utente utenteTeste = new Utente();
         
-        System.out.print("\nNome: ");
+        System.out.print("Nome: " + "\n");
         utenteTeste.setNome(entradaDados.nextLine());
         
-        System.out.print("\nIdade: ");
+        System.out.print("Idade: " + "\n");
         utenteTeste.setIdade(entradaDados.nextInt());
+
+        // atribui um número aleatório ao utente aqui
+
+        utenteTeste.setNumeroUtente(geradorAleatorio.nextInt(100000));
 
         utentes.add(utenteTeste); // Utente adicionado à lista de utentes
 
         /// TESTES ///
-        System.out.print(utenteTeste.getNome());
-        System.out.print(utenteTeste.getIdade());
+        // System.out.print(utenteTeste.getNome());
+        // System.out.print(utenteTeste.getIdade());
         
     }
 
     public static void adicionarMedico() {
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
+        Random geradorAleatorio = new Random();
 
         Medico medicoTeste = new Medico();
 
-        System.out.print("\nNome: ");
+        System.out.println("Nome: " + "\n");
         medicoTeste.setNome(entradaDados.nextLine());
 
-        System.out.print("\nIdade: ");
+        System.out.println("Idade: " + "\n");
         medicoTeste.setIdade(entradaDados.nextInt());
+
+        medicoTeste.setNumeroMedico(geradorAleatorio.nextInt(100000) + 100000);
 
         medicos.add(medicoTeste); // Médico adicionado à lista de médicos
 
         /// TESTES ///
-        System.out.print(medicoTeste.getNome());
-        System.out.print(medicoTeste.getIdade());
+        // zSystem.out.print(medicoTeste.getNome());
+        // System.out.print(medicoTeste.getIdade());
+
+    }
+
+    public static void listarUtentes() {
+
+        for(int i = 0; i < utentes.size(); i++) {
+
+            System.out.println("NÚMERO DE UTENTE: " + utentes.get(i).getNumeroUtente());
+            System.out.println("Nome: " + utentes.get(i).getNome());
+            System.out.println("Idade: " + utentes.get(i).getIdade());
+
+            System.out.println("////////////////////////////////////");
+
+        }
+
+    }
+
+    public static void listarMedicos() {
+
+        for(int i = 0; i < medicos.size(); i++) {
+
+            System.out.println("NÚMERO DE MÉDICO: " + medicos.get(i).getNumeroMedico());
+            System.out.println("Nome: " + medicos.get(i).getNome());
+            System.out.println("Idade: " + medicos.get(i).getIdade());
+
+            System.out.println("////////////////////////////////////");
+
+        }
 
     }
     
