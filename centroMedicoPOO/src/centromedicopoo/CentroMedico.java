@@ -20,7 +20,15 @@ public class CentroMedico extends CentroMedicoPOO {
     private static List<Medico> medicos = new ArrayList<Medico>(10);
 
     public static void menuPrincipal() {
-
+        System.out.println("1 - Registar um novo utente\n" // adicionarUtente
+                +"2 - Registar um novo médico\n" // adicionarMedico
+                +"3 - Realizar uma nova consulta de diagnóstico\n" // ?
+                +"4 - Realizar uma nova consulta de resultados\n" // ?
+                +"5 - Listar utentes\n" // menuListarUtentes
+                +"6 - Listar médicos\n" // menuListarMedicos
+                +"7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
+                +"8 - Número de consultas que o centro médico já realizou\n" // ?
+                +"9 - Sair do programa\n"); // ?
     }
 
     public static void adicionarUtente() {
@@ -113,7 +121,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void menulistarUtentes() {
+    public static void menuListarUtentes() {
 
         System.out.println("----- MENU DE LISTAGEM DE UTENTES -----\n"
                 +"1 - Listar todos os utentes (nome, idade e número de utente)\n"
@@ -145,7 +153,19 @@ public class CentroMedico extends CentroMedicoPOO {
         //
     }
 
-    public static void listarMedicos() {
+
+    public static void menuListarMedicos() {
+
+        System.out.println("----- MENU DE LISTAGEM DE MÉDICOS -----\n"
+                +"1 - Listar médicos com uma dada especialidade\n"
+                +"2 - Listar todos os médicos (ordenados pela classificação média)\n"
+                +"3 - Voltar atrás\n");
+
+    }
+
+    // LISTARMEDICOS ESTÁ INCOMPLETO
+
+    public static void listarInfoMedicos() {
 
         for(int i = 0; i < medicos.size(); i++) {
 
