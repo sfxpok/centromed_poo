@@ -19,13 +19,15 @@ public class CentroMedicoPOO {
     public static void main(String[] args) {
 
         // MENU DE SELECÇÃO POR FAZER
-        // CentroMedico.terminalPrompt();
+        // CentroMedico.menuPrincipal();
 
-        CentroMedico.adicionarUtente();
-        CentroMedico.adicionarMedico();
+        // CentroMedico.adicionarUtente();
+        // CentroMedico.adicionarMedico();
 
-        CentroMedico.listarUtentes();
-        CentroMedico.listarMedicos();
+        // CentroMedico.listarInfoUtentes();
+        // CentroMedico.listarMedicos();
+
+        // CentroMedico.menuListarUtentes();
     }
     
 }
