@@ -32,7 +32,14 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.print("Idade: " + "\n");
         utenteTeste.setIdade(entradaDados.nextInt());
 
-        // atribui um número aleatório ao utente aqui
+        System.out.println("O utente tem seguro? S/N: " + "\n");
+        if (entradaDados.nextLine() == "S")
+            utenteTeste.setTemSeguro(true);
+        else if (entradaDados.next() == "N")
+            utenteTeste.setTemSeguro(false);
+        else
+            System.out.println("Valor inválido. Inserção de dados interrompida.");
+            // SAI DESTE MÉTODO AQUI E VOLTA AO MENU PRINCIPAL
 
         utenteTeste.setNumeroUtente(geradorAleatorio.nextInt(100000));
 
@@ -57,12 +64,15 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.println("Idade: " + "\n");
         medicoTeste.setIdade(entradaDados.nextInt());
 
+        // System.out.println("Especialidade: " + "\n");
+        // CRIA UM ARRAY COM ESPECIALIDADES
+
         medicoTeste.setNumeroMedico(geradorAleatorio.nextInt(100000) + 100000);
 
         medicos.add(medicoTeste); // Médico adicionado à lista de médicos
 
         /// TESTES ///
-        // zSystem.out.print(medicoTeste.getNome());
+        // System.out.print(medicoTeste.getNome());
         // System.out.print(medicoTeste.getIdade());
 
     }
@@ -74,6 +84,12 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("NÚMERO DE UTENTE: " + utentes.get(i).getNumeroUtente());
             System.out.println("Nome: " + utentes.get(i).getNome());
             System.out.println("Idade: " + utentes.get(i).getIdade());
+
+            if (utentes.get(i).getTemSeguro())
+                System.out.println("O utente tem seguro.");
+                // AUMENTAR DESCONTO DO UTENTE AQUI
+            else
+                System.out.println("O utente não tem seguro.");
 
             System.out.println("////////////////////////////////////");
 
