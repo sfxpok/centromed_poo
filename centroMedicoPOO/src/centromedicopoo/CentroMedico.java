@@ -16,10 +16,8 @@ import java.util.Random;
  */
 public class CentroMedico extends CentroMedicoPOO {
 
-    private static List<Utente> utentes = new ArrayList<Utente>(10); // ALTERA O LIMITE MAIS TARDE
-    private static List<Medico> medicos = new ArrayList<Medico>(10);
-
-    boolean sair = false;
+    private static List<Utente> utentes = new ArrayList<>();
+    private static List<Medico> medicos = new ArrayList<>();
 
     public static void menuPrincipal() {
 
@@ -138,6 +136,7 @@ public class CentroMedico extends CentroMedicoPOO {
         String nome;
         int idade;
         int numeroMedico;
+        String especialidade;
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
         Random geradorAleatorio = new Random();
@@ -153,8 +152,21 @@ public class CentroMedico extends CentroMedicoPOO {
         // O número único do médico começa em 100000
         numeroMedico = geradorAleatorio.nextInt(100000) + 100000;
 
-        // System.out.println("Especialidade: " + "\n");
-        // CRIA UM ARRAY COM ESPECIALIDADES
+        System.out.println("Especialidade: " + "\n");
+        especialidade = entradaDados.nextLine();
+        especialidade = entradaDados.nextLine();
+
+        for(int i = 0; i < Medico.especialidades.length; i++) {
+            if(especialidade.equals(Medico.especialidades[i])) {
+                medicoTeste.setEspecialidade(especialidade);
+            }
+
+            if(i == Medico.especialidades.length-1){
+                System.out.println("ESPECIALIDADE INVALIDA"); // APENAS TESTES
+                menuPrincipal();
+            }
+
+        }
 
         medicoTeste.setNome(nome);
         medicoTeste.setIdade(idade);
@@ -165,6 +177,8 @@ public class CentroMedico extends CentroMedicoPOO {
         /// TESTES ///
         // System.out.print(medicoTeste.getNome());
         // System.out.print(medicoTeste.getIdade());
+
+        menuPrincipal();
 
     }
 
@@ -274,6 +288,7 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("NÚMERO DE MÉDICO: " + medicos.get(i).getNumeroMedico());
             System.out.println("Nome: " + medicos.get(i).getNome());
             System.out.println("Idade: " + medicos.get(i).getIdade());
+            System.out.println("Especialidade: " + medicos.get(i).getEspecialidade());
 
             System.out.println("////////////////////////////////////");
 

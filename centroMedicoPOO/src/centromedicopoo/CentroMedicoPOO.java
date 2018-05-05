@@ -20,8 +20,8 @@ public class CentroMedicoPOO {
 
         // CentroMedico.menuPrincipal();
 
-        CentroMedico.adicionarUtente();
-        // CentroMedico.adicionarMedico();
+        // CentroMedico.adicionarUtente();
+        CentroMedico.adicionarMedico();
 
         // CentroMedico.listarInfoUtentes();
         // CentroMedico.listarInfoMedicos();

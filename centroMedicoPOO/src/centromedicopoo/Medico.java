@@ -32,7 +32,8 @@ public class Medico extends Individuo {
 
     }
 
-    //
+    static String[] especialidades = {"Pediatra","Cardiologia","Neurologia","Radiologia","Urologia"};
+
 
     public int getNumeroMedico() {
         return numeroMedico;
