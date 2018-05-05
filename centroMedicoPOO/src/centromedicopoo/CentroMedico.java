@@ -19,16 +19,66 @@ public class CentroMedico extends CentroMedicoPOO {
     private static List<Utente> utentes = new ArrayList<Utente>(10); // ALTERA O LIMITE MAIS TARDE
     private static List<Medico> medicos = new ArrayList<Medico>(10);
 
+    boolean sair = false;
+
     public static void menuPrincipal() {
-        System.out.println("1 - Registar um novo utente\n" // adicionarUtente
-                +"2 - Registar um novo médico\n" // adicionarMedico
-                +"3 - Realizar uma nova consulta de diagnóstico\n" // ?
-                +"4 - Realizar uma nova consulta de resultados\n" // ?
-                +"5 - Listar utentes\n" // menuListarUtentes
-                +"6 - Listar médicos\n" // menuListarMedicos
-                +"7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
-                +"8 - Número de consultas que o centro médico já realizou\n" // ?
-                +"9 - Sair do programa\n"); // ?
+
+        boolean sair = true;
+
+        do {
+
+            System.out.println("1 - Registar um novo utente\n" // adicionarUtente
+                    + "2 - Registar um novo médico\n" // adicionarMedico
+                    + "3 - Realizar uma nova consulta de diagnóstico\n" // ?
+                    + "4 - Realizar uma nova consulta de resultados\n" // ?
+                    + "5 - Listar utentes\n" // menuListarUtentes
+                    + "6 - Listar médicos\n" // menuListarMedicos
+                    + "7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
+                    + "8 - Número de consultas que o centro médico já realizou\n" // ?
+                    + "9 - Sair do programa\n"); // ?
+
+            Scanner entradaDados = new Scanner(System.in, "Cp1252");
+            int op;
+
+            System.out.print("Escolha uma opção: ");
+            op = entradaDados.nextInt();
+
+            switch(op) {
+                case 1:
+                    adicionarUtente();
+                    break;
+                case 2:
+                    adicionarMedico();
+                    break;
+                case 3:
+                    //
+                    break;
+                case 4:
+                    //
+                    break;
+                case 5:
+                    menuListarUtentes();
+                    break;
+                case 6:
+                    menuListarMedicos();
+                    break;
+                case 7:
+                    //
+                    break;
+                case 8:
+                    //
+                    break;
+                case 9:
+                    sair = false;
+                    break;
+                default:
+                    System.out.println("\nValor inválido\n");
+            }
+
+
+
+        } while(sair);
+
     }
 
     public static void adicionarUtente() {
@@ -45,11 +95,9 @@ public class CentroMedico extends CentroMedicoPOO {
         
         System.out.print("Nome: " + "\n");
         nome = entradaDados.nextLine();
-        // utenteTeste.setNome(entradaDados.nextLine());
         
         System.out.print("Idade: " + "\n");
         idade = entradaDados.nextInt();
-        // utenteTeste.setIdade(entradaDados.nextInt());
 
         numeroUtente = geradorAleatorio.nextInt(100000);
 
@@ -98,12 +146,11 @@ public class CentroMedico extends CentroMedicoPOO {
 
         System.out.println("Nome: " + "\n");
         nome = entradaDados.nextLine();
-        // medicoTeste.setNome(entradaDados.nextLine());
 
         System.out.println("Idade: " + "\n");
         idade = entradaDados.nextInt();
-        // medicoTeste.setIdade(entradaDados.nextInt());
 
+        // O número único do médico começa em 100000
         numeroMedico = geradorAleatorio.nextInt(100000) + 100000;
 
         // System.out.println("Especialidade: " + "\n");
@@ -123,11 +170,40 @@ public class CentroMedico extends CentroMedicoPOO {
 
     public static void menuListarUtentes() {
 
-        System.out.println("----- MENU DE LISTAGEM DE UTENTES -----\n"
-                +"1 - Listar todos os utentes (nome, idade e número de utente)\n"
-                +"2 - Listar os utentes que um médico consultará num dado dia\n"
-                +"3 - Listar o valor total pago por cada utente\n"
-                +"4 - Voltar atrás\n");
+        boolean sair = true;
+
+        do {
+            System.out.println("----- MENU DE LISTAGEM DE UTENTES -----\n"
+                    +"1 - Listar todos os utentes (nome, idade e número de utente)\n"
+                    +"2 - Listar os utentes que um médico consultará num dado dia\n"
+                    +"3 - Listar o valor total pago por cada utente\n"
+                    +"4 - Voltar atrás\n");
+
+            Scanner entradaDados = new Scanner(System.in, "Cp1252");
+            int op;
+
+            System.out.print("Escolha uma opção: ");
+            op = entradaDados.nextInt();
+
+            switch(op) {
+                case 1:
+                    listarInfoUtentes();
+                    break;
+                case 2:
+                    //
+                    break;
+                case 3:
+                    listarPagamentosUtentes();
+                    break;
+                case 4:
+                    sair = false;
+                    break;
+                default:
+                    System.out.println("\nValor inválido\n");
+            }
+
+        } while(sair);
+
     }
 
     public static void listarInfoUtentes() {

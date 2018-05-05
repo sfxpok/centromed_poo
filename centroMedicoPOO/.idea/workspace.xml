@@ -14,40 +14,48 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CentroMedicoPOO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedicoPOO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CentroMedico.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#446#454#0" expanded="true" />
-                <element signature="e#545#553#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MasterCook.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/MasterCook/src/mastercook/MasterCook.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="CentroMedicoPOO.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedicoPOO.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="240">
+                  <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CentroMedico.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="502">
+                  <caret line="204" column="22" selection-start-line="204" selection-start-column="22" selection-end-line="204" selection-end-column="22" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#446#454#0" expanded="true" />
+                    <element signature="e#545#553#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="MasterCook.java" pinned="false" current-in-tab="true">
+            <entry file="file://$USER_HOME$/Downloads/MasterCook/src/mastercook/MasterCook.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1350">
+                  <caret line="103" column="33" lean-forward="true" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -115,7 +123,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CentroMedicoPOO">
+  <component name="RunManager" selected="Application.CentroMedico">
     <configuration name="CentroMedico" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="centromedicopoo.CentroMedico" />
       <module name="centroMedicoPOO" />
@@ -190,8 +198,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CentroMedicoPOO" />
         <item itemvalue="Application.CentroMedico" />
+        <item itemvalue="Application.CentroMedicoPOO" />
       </list>
     </recent_temporary>
   </component>
@@ -212,13 +220,13 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.504543" side_tool="true" visible="true" weight="0.18638743" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.504543" side_tool="true" visible="true" weight="0.30052355" />
       <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49545696" visible="true" weight="0.18638743" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49545696" visible="true" weight="0.30052355" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11277392" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1111705" />
       <window_info id="Learn" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -434,13 +442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/MasterCook/src/mastercook/MasterCook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Individuo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -470,15 +471,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedicoPOO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="240">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/MasterCook/src/mastercook/MasterCook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="103" column="33" lean-forward="true" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+        <state relative-caret-position="502">
+          <caret line="204" column="22" selection-start-line="204" selection-start-column="22" selection-end-line="204" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#446#454#0" expanded="true" />
