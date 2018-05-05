@@ -75,6 +75,8 @@ public class Utente extends Individuo {
     public void setTemSeguro(boolean temSeguro) {
         this.temSeguro = temSeguro;
     }
+
+    // public String toString() { }
     
     /////////////////////////////////////////////
     

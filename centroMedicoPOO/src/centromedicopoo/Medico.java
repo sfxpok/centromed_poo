@@ -67,4 +67,6 @@ public class Medico extends Individuo {
         this.consultasDia = consultasDia;
     }
 
+    // public String toString() { }
+
 }

@@ -106,7 +106,8 @@ public class CentroMedico extends CentroMedicoPOO {
 
         if (temSeguro.equals("S")) {
             utenteTeste.setTemSeguro(true);
-            System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO"); // APENAS PARA TESTESs
+            utenteTeste.setDescontoAcumulado(0.40); // EDITAR ISTO
+            System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO"); // APENAS PARA TESTES
             // ATRIBUI DESCONTO
         }
         else if (temSeguro.equals("N")) {
@@ -153,7 +154,8 @@ public class CentroMedico extends CentroMedicoPOO {
         numeroMedico = geradorAleatorio.nextInt(100000) + 100000;
 
         System.out.println("Especialidade: " + "\n");
-        especialidade = entradaDados.nextLine();
+
+        especialidade = entradaDados.nextLine(); // arranja isto? não sei porquê é que tenho que ter 2
         especialidade = entradaDados.nextLine();
 
         for(int i = 0; i < Medico.especialidades.length; i++) {
@@ -240,7 +242,7 @@ public class CentroMedico extends CentroMedicoPOO {
     }
 
     public static void listarPagamentosUtentes() {
-        //
+        // no can do
     }
 
 
