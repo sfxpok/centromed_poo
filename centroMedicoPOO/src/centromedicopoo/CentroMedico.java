@@ -102,21 +102,21 @@ public class CentroMedico extends CentroMedicoPOO {
         numeroUtente = geradorAleatorio.nextInt(100000);
 
         System.out.print("O utente tem seguro? S/N: " + "\n");
-        temSeguro = entradaDados.nextLine();
+
+        temSeguro = entradaDados.nextLine(); // arranja isto? não sei porquê é que tenho que ter 2
         temSeguro = entradaDados.nextLine();
 
-        /// CORRIGIR A COMPARAÇÃO DO TEMSEGURO ### BUG ### ///
-
-        if (temSeguro == "S") {
+        if (temSeguro.equals("S")) {
             utenteTeste.setTemSeguro(true);
+            System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO"); // APENAS PARA TESTESs
             // ATRIBUI DESCONTO
         }
-        else if (temSeguro == "N") {
+        else if (temSeguro.equals("N")) {
             utenteTeste.setTemSeguro(false);
         }
         else {
-            System.out.println("Valor inválido. Inserção de dados interrompida.");
-            // SAI DESTE MÉTODO AQUI E VOLTA AO MENU PRINCIPAL
+            System.out.println("Valor inválido. Inserção de dados interrompida. Voltamos ao menu principal.");
+            menuPrincipal();
         }
 
         /////////////////////////////////////////////

@@ -18,9 +18,9 @@ public class CentroMedicoPOO {
      */
     public static void main(String[] args) {
 
-        CentroMedico.menuPrincipal();
+        // CentroMedico.menuPrincipal();
 
-        // CentroMedico.adicionarUtente();
+        CentroMedico.adicionarUtente();
         // CentroMedico.adicionarMedico();
 
         // CentroMedico.listarInfoUtentes();
