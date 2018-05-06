@@ -73,8 +73,6 @@ public class CentroMedico extends CentroMedicoPOO {
                     System.out.println("\nValor inválido\n");
             }
 
-
-
         } while(sair);
 
     }
@@ -139,6 +137,9 @@ public class CentroMedico extends CentroMedicoPOO {
         int numeroMedico;
         String especialidade;
 
+        boolean registaMedico = false;
+        boolean especialidadeInvalida = true;
+
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
         Random geradorAleatorio = new Random();
 
@@ -160,27 +161,31 @@ public class CentroMedico extends CentroMedicoPOO {
 
         for(int i = 0; i < Medico.especialidades.length; i++) {
             if(especialidade.equals(Medico.especialidades[i])) {
-                medicoTeste.setEspecialidade(especialidade);
-            }
-
-            if(i == Medico.especialidades.length-1){
-                System.out.println("ESPECIALIDADE INVALIDA"); // APENAS TESTES
-                menuPrincipal();
+                // medicoTeste.setEspecialidade(especialidade);
+                registaMedico = true;
+                especialidadeInvalida = false;
             }
 
         }
 
-        medicoTeste.setNome(nome);
-        medicoTeste.setIdade(idade);
-        medicoTeste.setNumeroMedico(numeroMedico);
+        if(especialidadeInvalida){
+            System.out.println("ESPECIALIDADE INVALIDA"); // APENAS TESTES
+            // registaMedico = false;
+            menuPrincipal();
+        }
 
-        medicos.add(medicoTeste); // Médico adicionado à lista de médicos
+        if(registaMedico) {
+            medicoTeste.setNome(nome);
+            medicoTeste.setIdade(idade);
+            medicoTeste.setNumeroMedico(numeroMedico);
+            medicoTeste.setEspecialidade(especialidade);
+
+            medicos.add(medicoTeste); // Médico adicionado à lista de médicos
+        }
 
         /// TESTES ///
         // System.out.print(medicoTeste.getNome());
         // System.out.print(medicoTeste.getIdade());
-
-        menuPrincipal();
 
     }
 
