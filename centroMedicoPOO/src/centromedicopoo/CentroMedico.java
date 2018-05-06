@@ -64,7 +64,7 @@ public class CentroMedico extends CentroMedicoPOO {
                     //
                     break;
                 case 8:
-                    //
+                    // numeroConsultasFeitas();
                     break;
                 case 9:
                     sair = false;
@@ -219,7 +219,7 @@ public class CentroMedico extends CentroMedicoPOO {
                     //
                     break;
                 case 3:
-                    listarPagamentosUtentes();
+                    // listarPagamentosUtentes();
                     break;
                 case 4:
                     sair = false;
@@ -251,10 +251,9 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void listarPagamentosUtentes() {
-        // no can do
-    }
+    // public static void listarPagamentosUtentes() { }
 
+    // public static int numeroConsultasFeitas() { }
 
     public static void menuListarMedicos() {
 

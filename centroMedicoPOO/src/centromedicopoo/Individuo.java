@@ -22,6 +22,10 @@ public class Individuo {
         this.nome = nome;
         this.idade = idade;
     }
+
+    public Individuo(String nome) {
+        this.nome = nome;
+    }
     
     public Individuo() {
         this.nome = "";
@@ -45,7 +49,9 @@ public class Individuo {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
+
+    // public String toString() { }
+
     /////////////////////////////////////////////
     
 }

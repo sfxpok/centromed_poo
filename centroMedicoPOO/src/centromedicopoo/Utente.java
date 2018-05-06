@@ -33,7 +33,13 @@ public class Utente extends Individuo {
     public Utente() {
         
     }
-    
+
+    public Utente(String nome, boolean temSeguro, double descontoAcumulado) {
+        super(nome);
+        this.temSeguro = temSeguro;
+        this.descontoAcumulado = descontoAcumulado;
+    }
+
     ///////////// Getters e setters /////////////
     
     public int getNumeroUtente() {
