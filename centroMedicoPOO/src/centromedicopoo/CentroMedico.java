@@ -84,6 +84,8 @@ public class CentroMedico extends CentroMedicoPOO {
         String temSeguro;
         int numeroUtente;
 
+        boolean seguroInvalido = false;
+
         Scanner entradaDados = new Scanner(System.in, "Cp1252");
         Random geradorAleatorio = new Random();
         
@@ -113,20 +115,23 @@ public class CentroMedico extends CentroMedicoPOO {
         }
         else {
             System.out.println("Valor inválido. Inserção de dados interrompida. Voltamos ao menu principal.");
-            menuPrincipal();
+            // menuPrincipal();
+            seguroInvalido = true;
         }
 
         /////////////////////////////////////////////
 
-        utenteTeste.setNome(nome);
-        utenteTeste.setIdade(idade);
-        utenteTeste.setNumeroUtente(numeroUtente);
+        if(!seguroInvalido) {
+            utenteTeste.setNome(nome);
+            utenteTeste.setIdade(idade);
+            utenteTeste.setNumeroUtente(numeroUtente);
 
-        utentes.add(utenteTeste); // Utente adicionado à lista de utentes
+            utentes.add(utenteTeste); // Utente adicionado à lista de utentes
 
-        /// TESTES ///
-        // System.out.print(utenteTeste.getNome());
-        // System.out.print(utenteTeste.getIdade());
+            /// TESTES ///
+            // System.out.print(utenteTeste.getNome());
+            // System.out.print(utenteTeste.getIdade());
+        }
         
     }
 
@@ -169,9 +174,9 @@ public class CentroMedico extends CentroMedicoPOO {
         }
 
         if(especialidadeInvalida){
-            System.out.println("ESPECIALIDADE INVALIDA"); // APENAS TESTES
+            System.out.println("ESPECIALIDADE INVALIDA. Inserção de dados interrompida."); // APENAS TESTES
             // registaMedico = false;
-            menuPrincipal();
+            // menuPrincipal();
         }
 
         if(registaMedico) {
