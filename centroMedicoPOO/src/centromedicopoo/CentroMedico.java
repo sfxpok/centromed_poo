@@ -194,6 +194,8 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    // public static void adicionarConsulta() { }
+
     public static void menuListarUtentes() {
 
         boolean sair = true;
