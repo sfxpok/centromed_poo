@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Date;
 
 /**
  *
@@ -194,7 +195,32 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    // public static void adicionarConsulta() { }
+    public static void adicionarConsulta() {
+
+        int numeroUtente;
+        int numeroMedico;
+        Date data;
+        // boolean flagDiagnostico;
+        // boolean flagResultados;
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        Consulta consultaTeste = new Consulta();
+
+        System.out.println("Insira o número de um utente: " + "\n");
+        numeroUtente = entradaDados.nextInt();
+
+        // VERIFICA SE O NUMERO EXISTE AQUI
+
+        System.out.println("Insira o número de um médico " + "\n");
+        numeroMedico = entradaDados.nextInt();
+
+        // VERIFICA SE O NUMERO EXISTE AQUI
+
+        // System.out.println("Insira a data: " + "\n");
+        // data = entradaDados.nextLine();
+
+    }
 
     public static void menuListarUtentes() {
 
@@ -276,7 +302,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
             switch(op) {
                 case 1:
-                    //
+                    // menuEspecialidadeMedicos();
                     break;
                 case 2:
                     listarInfoMedicos();
@@ -291,6 +317,8 @@ public class CentroMedico extends CentroMedicoPOO {
         } while(sair);
 
     }
+
+    // public static void menuEspecialidadeMedicos() { }
 
     // LISTARMEDICOS ESTÁ INCOMPLETO
 
