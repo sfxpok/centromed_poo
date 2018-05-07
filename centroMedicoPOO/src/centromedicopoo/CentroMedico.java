@@ -373,7 +373,36 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    // public static void menuEspecialidadeMedicos() { }
+    public static void menuEspecialidadeMedicos() {
+
+        String especialidade;
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        /* System.out.println("----- MENU DE LISTAGEM DE ESPECIALIDADES -----\n"
+                + "1 - Pediatra\n"
+                + "2 - Cardiologia\n"
+                + "3 - Neurologia\n"
+                + "4 - Radiologia\n"
+                + "5 - Urologia"); */ // não é eficiente
+
+        System.out.println("Escolha uma especialidade: ");
+        especialidade = entradaDados.nextLine();
+
+        for(int i = 0; i < Medico.especialidades.length; i++) {
+            if(especialidade.equals(Medico.especialidades[i])) {
+
+                List<Medico> listaFiltrada = new ArrayList<>();
+
+                // falta buscar médicos com uma dada especialidade
+
+                // listaFiltrada.add(Medico)
+
+            }
+
+        }
+
+    }
 
     // LISTARMEDICOS ESTÁ INCOMPLETO
 
