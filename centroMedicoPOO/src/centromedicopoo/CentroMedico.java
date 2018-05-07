@@ -5,11 +5,11 @@
  */
 package centromedicopoo;
 
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
+
+import java.util.stream.Collectors;
 
 /**
  *
@@ -50,7 +50,7 @@ public class CentroMedico extends CentroMedicoPOO {
                     adicionarMedico();
                     break;
                 case 3:
-                    //
+                    adicionarConsulta();
                     break;
                 case 4:
                     //
@@ -199,9 +199,12 @@ public class CentroMedico extends CentroMedicoPOO {
 
         int numeroUtente;
         int numeroMedico;
-        Date data;
+        String data;
         // boolean flagDiagnostico;
         // boolean flagResultados;
+
+        boolean numeroUtenteCorrecto = false;
+        boolean numeroMedicoCorrecto = false;
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
 
@@ -210,15 +213,67 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.println("Insira o número de um utente: " + "\n");
         numeroUtente = entradaDados.nextInt();
 
-        // VERIFICA SE O NUMERO EXISTE AQUI
+        // List<Utente> resultado = utentes.stream()
+                // .filter(item -> item.getNumeroUtente() == numeroUtente)
+                // .collect(Collectors.toList());
+
+        for(int i = 0; i < utentes.size(); i++) {
+
+            if (utentes.get(i).getNumeroUtente() == numeroUtente) {
+                numeroUtenteCorrecto = true;
+                System.out.println("NÚMERO ESTÁ CORRETO");
+            }
+            else {
+                numeroUtenteCorrecto = false;
+                System.out.println("NÚMERO ESTÁ INCORRETO");
+            }
+
+        }
 
         System.out.println("Insira o número de um médico " + "\n");
         numeroMedico = entradaDados.nextInt();
 
-        // VERIFICA SE O NUMERO EXISTE AQUI
+        for(int i = 0; i < medicos.size(); i++) {
 
-        // System.out.println("Insira a data: " + "\n");
-        // data = entradaDados.nextLine();
+            if (medicos.get(i).getNumeroMedico() == numeroMedico) {
+                numeroMedicoCorrecto = true;
+                System.out.println("NÚMERO ESTÁ CORRETO");
+            }
+            else {
+                numeroMedicoCorrecto = false;
+                System.out.println("NÚMERO ESTÁ INCORRETO");
+            }
+
+        }
+
+        System.out.println("Insira a data (Ano): " + "\n");
+        data = entradaDados.next();
+
+        int a = Integer.parseInt(data);
+
+        System.out.println("Insira a data (Mês): " + "\n");
+        data = entradaDados.next();
+
+        int m = Integer.parseInt(data);
+
+        System.out.println("Insira a data (Dia): " + "\n");
+        data = entradaDados.next();
+
+        int d = Integer.parseInt(data);
+
+        // ATRIBUIÇÃO DE DATA (EXEMPLO)
+        // LocalDate testeData = LocalDate.of(a,m,d);
+
+
+        // Aqui assumimos logo que a consulta é de diagnóstico, obviamente
+
+
+        // if(registaConsulta) { // não sei, talvez tenha que usar Interface...
+
+            // consultaTeste
+
+        // }
+
 
     }
 
