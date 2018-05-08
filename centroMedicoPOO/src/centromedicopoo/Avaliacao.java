@@ -12,4 +12,8 @@ public class Avaliacao {
         nota = 0;
     }
 
+    public static double calculaMedia(int nota, int avaliacoes) {
+        return nota/avaliacoes;
+    }
+
 }

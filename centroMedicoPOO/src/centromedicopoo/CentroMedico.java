@@ -432,5 +432,34 @@ public class CentroMedico extends CentroMedicoPOO {
         }
 
     }
+
+    // NUNCA TESTADO, PROVAVELMENTE NÃO FUNCIONA //
+
+    public static void avaliarAlguem(Utente utente, Medico medico) {
+
+        int nota;
+        double media;
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        ////////////// *** APENAS PARA TESTES *** //////////////
+
+        // insere medico aqui
+
+        ////////////////////////////////////////////////////////
+
+
+
+        System.out.println("Avaliação (inteiro): ");
+        nota = entradaDados.nextInt();
+
+        medico.setNumAvaliacoes(medico.getNumAvaliacoes() + 1); // incrementa número de avaliações feitas
+        medico.setSomaNotas(medico.getSomaNotas() + nota); // soma o total da nota
+
+        media = Avaliacao.calculaMedia(medico.getSomaNotas(), medico.getNumAvaliacoes()); // re-calcula a média
+
+        medico.setAvaliacaoMedia(media);
+
+    }
     
 }

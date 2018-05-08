@@ -21,14 +21,19 @@ public class Medico extends Individuo {
     private double avaliacaoMedia;
     private int consultasDia;
 
+    private int numAvaliacoes;
+    private int somaNotas;
+
     // Construtores
 
-    public Medico(String nome, int idade, int numeroMedico, String especialidade, double avaliacaoMedia, int consultasDia) {
+    public Medico(String nome, int idade, int numeroMedico, String especialidade, double avaliacaoMedia, int consultasDia, int numAvaliacoes, int somaNotas) {
         super(nome, idade);
         this.numeroMedico = numeroMedico;
         this.especialidade = especialidade;
         this.avaliacaoMedia = avaliacaoMedia;
         this.consultasDia = consultasDia;
+        this.numAvaliacoes = numAvaliacoes;
+        this.somaNotas = somaNotas;
     }
 
     public Medico() {
@@ -69,6 +74,16 @@ public class Medico extends Individuo {
     public void setConsultasDia(int consultasDia) {
         this.consultasDia = consultasDia;
     }
+
+    /////////////////////////////// CLASSES NOVAS ///////////////////////////////
+
+    public int getNumAvaliacoes() { return numAvaliacoes; }
+    public void setNumAvaliacoes(int numAvaliacoes) { this.numAvaliacoes = numAvaliacoes; }
+
+    public int getSomaNotas() { return somaNotas; }
+    public void setSomaNotas(int somaNotas) { this.somaNotas = somaNotas; }
+
+    /////////////////////////////////////////////////////////////////////////////
 
     // public String toString() { }
 
