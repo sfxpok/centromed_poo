@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 /**
  *
@@ -357,7 +358,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
             switch(op) {
                 case 1:
-                    // menuEspecialidadeMedicos();
+                    menuEspecialidadeMedicos();
                     break;
                 case 2:
                     listarInfoMedicos();
@@ -379,26 +380,24 @@ public class CentroMedico extends CentroMedicoPOO {
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
 
-        /* System.out.println("----- MENU DE LISTAGEM DE ESPECIALIDADES -----\n"
-                + "1 - Pediatra\n"
-                + "2 - Cardiologia\n"
-                + "3 - Neurologia\n"
-                + "4 - Radiologia\n"
-                + "5 - Urologia"); */ // não é eficiente
-
         System.out.println("Escolha uma especialidade: ");
         especialidade = entradaDados.nextLine();
 
-        for(int i = 0; i < Medico.especialidades.length; i++) {
-            if(especialidade.equals(Medico.especialidades[i])) {
+        // VERIFICA SE A ESPECIALIDADE É VÁLIDA OU NÃO
+        // INDEPENDENTEMENTE DE METER UMA ESPECIALIDADE QUE NÃO EXISTE, O PROGRAMA NÃO REBENTA
 
-                List<Medico> listaFiltrada = new ArrayList<>();
+        List<Medico> listaFiltradaCopiada = medicos.stream()
+                .filter(p -> p.getEspecialidade().equals(especialidade))
+                .collect(Collectors.toList());
 
-                // falta buscar médicos com uma dada especialidade
+        for(int i = 0; i < listaFiltradaCopiada.size(); i++) {
 
-                // listaFiltrada.add(Medico)
+            System.out.println("NÚMERO DE MÉDICO: " + listaFiltradaCopiada.get(i).getNumeroMedico());
+            System.out.println("Nome: " + listaFiltradaCopiada.get(i).getNome());
+            System.out.println("Idade: " + listaFiltradaCopiada.get(i).getIdade());
+            System.out.println("Especialidade: " + listaFiltradaCopiada.get(i).getEspecialidade());
 
-            }
+            System.out.println("////////////////////////////////////");
 
         }
 
