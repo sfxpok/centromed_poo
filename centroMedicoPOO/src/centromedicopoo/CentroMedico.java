@@ -377,6 +377,7 @@ public class CentroMedico extends CentroMedicoPOO {
     public static void menuEspecialidadeMedicos() {
 
         String especialidade;
+        boolean encontreiEspecialidade = false;
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
 
@@ -385,6 +386,18 @@ public class CentroMedico extends CentroMedicoPOO {
 
         // VERIFICA SE A ESPECIALIDADE É VÁLIDA OU NÃO
         // INDEPENDENTEMENTE DE METER UMA ESPECIALIDADE QUE NÃO EXISTE, O PROGRAMA NÃO REBENTA
+
+        for (String especialidadeExistente : Medico.especialidades) {
+            if (especialidadeExistente.equals(especialidade)) {
+                encontreiEspecialidade = true;
+                break;
+            }
+        }
+
+        if (!encontreiEspecialidade) {
+            System.out.println("MÉTODO INTERROMPIDO");
+            return;
+        }
 
         List<Medico> listaFiltradaCopiada = medicos.stream()
                 .filter(p -> p.getEspecialidade().equals(especialidade))
