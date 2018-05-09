@@ -1,89 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package centromedicopoo;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.*;
-import java.text.DecimalFormat;
-
+import java.util.ArrayList;
 import java.util.stream.Collectors;
-import static java.util.stream.Collectors.toList;
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
-/**
- *
- * @author r
- */
 public class CentroMedico extends CentroMedicoPOO {
 
     private static List<Utente> utentes = new ArrayList<>();
     private static List<Medico> medicos = new ArrayList<>();
-
-    public static void menuPrincipal() {
-
-        boolean sair = true;
-        // Medico medicoAvaliado = new Medico("Ana", 32, "Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
-
-        do {
-
-            System.out.println("1 - Registar um novo utente\n" // adicionarUtente
-                    + "2 - Registar um novo médico\n" // adicionarMedico
-                    + "3 - Realizar uma nova consulta de diagnóstico\n" // ?
-                    + "4 - Realizar uma nova consulta de resultados\n" // ?
-                    + "5 - Listar utentes\n" // menuListarUtentes
-                    + "6 - Listar médicos\n" // menuListarMedicos
-                    + "7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
-                    + "8 - Número de consultas que o centro médico já realizou\n" // ?
-                    + "9 - Sair do programa\n" // ?
-                    + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n");
-
-            Scanner entradaDados = new Scanner(System.in, "Cp1252");
-            int op;
-
-            System.out.print("Escolha uma opção: ");
-            op = entradaDados.nextInt();
-
-            switch(op) {
-                case 1:
-                    adicionarUtente();
-                    break;
-                case 2:
-                    adicionarMedico();
-                    break;
-                case 3:
-                    adicionarConsulta();
-                    break;
-                case 4:
-                    //
-                    break;
-                case 5:
-                    menuListarUtentes();
-                    break;
-                case 6:
-                    menuListarMedicos();
-                    break;
-                case 7:
-                    //
-                    break;
-                case 8:
-                    // numeroConsultasFeitas();
-                    break;
-                case 9:
-                    sair = false;
-                    break;
-//                case 10:
-//                    avaliarAlguem(medicoAvaliado);
-//                    break;
-                default:
-                    System.out.println("\nValor inválido\n");
-            }
-
-        } while(sair);
-
-    }
 
     public static void adicionarUtente() {
 
@@ -284,6 +211,140 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    // public static void listarPagamentosUtentes() { }
+
+    // public static int numeroConsultasFeitas() { }
+
+    public static void consultarEspecialidadeMedico() {
+
+        String especialidade;
+        boolean encontreiEspecialidade = false;
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        System.out.println("Escolha uma especialidade: ");
+        especialidade = entradaDados.nextLine();
+
+        // VERIFICA SE A ESPECIALIDADE É VÁLIDA OU NÃO
+        // INDEPENDENTEMENTE DE METER UMA ESPECIALIDADE QUE NÃO EXISTE, O PROGRAMA NÃO REBENTA
+
+        for (String especialidadeExistente : Medico.especialidades) {
+            if (especialidadeExistente.equals(especialidade)) {
+                encontreiEspecialidade = true;
+                break;
+            }
+        }
+
+        if (!encontreiEspecialidade) {
+            System.out.println("MÉTODO INTERROMPIDO");
+            return;
+        }
+
+        List<Medico> listaFiltradaCopiada = medicos.stream()
+                .filter(p -> p.getEspecialidade().equals(especialidade))
+                .collect(Collectors.toList());
+
+        listarInfoMedicosEspecialidade(listaFiltradaCopiada);
+
+    }
+
+    public static void avaliarAlguem(Medico medico) {
+
+        double nota;
+        double media;
+        DecimalFormat mediaArredondada = new DecimalFormat(".##");
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        System.out.println("Avaliação (inteiro): ");
+        nota = entradaDados.nextDouble();
+
+        medico.setNumAvaliacoes(medico.getNumAvaliacoes() + 1); // incrementa número de avaliações feitas
+        medico.setSomaNotas(medico.getSomaNotas() + nota); // soma o total da nota
+
+
+        media = Avaliacao.calculaMedia(medico.getSomaNotas(), medico.getNumAvaliacoes()); // re-calcula a média
+        System.out.println("A média calculada: " + mediaArredondada.format(media));
+
+        medico.setAvaliacaoMedia(media);
+
+        return;
+
+    }
+
+    /////////////////////////////////////////////////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    ///////////        OUTPUT DE MENUS        ///////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    /////////////////////////////////////////////////////
+
+    public static void menuPrincipal() {
+
+        boolean sair = true;
+        // Medico medicoAvaliado = new Medico("Ana", 32, "Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
+
+        do {
+
+            System.out.println("1 - Registar um novo utente\n" // adicionarUtente
+                    + "2 - Registar um novo médico\n" // adicionarMedico
+                    + "3 - Realizar uma nova consulta de diagnóstico\n" // ?
+                    + "4 - Realizar uma nova consulta de resultados\n" // ?
+                    + "5 - Listar utentes\n" // menuListarUtentes
+                    + "6 - Listar médicos\n" // menuListarMedicos
+                    + "7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
+                    + "8 - Número de consultas que o centro médico já realizou\n" // ?
+                    + "9 - Sair do programa\n" // ?
+                    + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n");
+
+            Scanner entradaDados = new Scanner(System.in, "Cp1252");
+            int op;
+
+            System.out.print("Escolha uma opção: ");
+            op = entradaDados.nextInt();
+
+            switch(op) {
+                case 1:
+                    adicionarUtente();
+                    break;
+                case 2:
+                    adicionarMedico();
+                    break;
+                case 3:
+                    adicionarConsulta();
+                    break;
+                case 4:
+                    //
+                    break;
+                case 5:
+                    menuListarUtentes();
+                    break;
+                case 6:
+                    menuListarMedicos();
+                    break;
+                case 7:
+                    //
+                    break;
+                case 8:
+                    // numeroConsultasFeitas();
+                    break;
+                case 9:
+                    sair = false;
+                    break;
+//                case 10:
+//                    avaliarAlguem(medicoAvaliado);
+//                    break;
+                default:
+                    System.out.println("\nValor inválido\n");
+            }
+
+        } while(sair);
+
+    }
+
     public static void menuListarUtentes() {
 
         boolean sair = true;
@@ -322,29 +383,6 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void listarInfoUtentes() {
-
-        for(int i = 0; i < utentes.size(); i++) {
-
-            System.out.println("NÚMERO DE UTENTE: " + utentes.get(i).getNumeroUtente());
-            System.out.println("Nome: " + utentes.get(i).getNome());
-            System.out.println("Idade: " + utentes.get(i).getIdade());
-
-            if (utentes.get(i).getTemSeguro())
-                System.out.println("O utente tem seguro.");
-            else
-                System.out.println("O utente não tem seguro.");
-
-            System.out.println("////////////////////////////////////");
-
-        }
-
-    }
-
-    // public static void listarPagamentosUtentes() { }
-
-    // public static int numeroConsultasFeitas() { }
-
     public static void menuListarMedicos() {
 
         boolean sair = true;
@@ -364,7 +402,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
             switch(op) {
                 case 1:
-                    menuEspecialidadeMedicos();
+                    consultarEspecialidadeMedico();
                     break;
                 case 2:
                     listarInfoMedicos();
@@ -380,49 +418,34 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void menuEspecialidadeMedicos() {
+    /////////////////////////////////////////////////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    ///////////        OUTPUT DE LISTAGEM     ///////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    ///////////                               ///////////
+    /////////////////////////////////////////////////////
 
-        String especialidade;
-        boolean encontreiEspecialidade = false;
+    public static void listarInfoUtentes() {
 
-        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+        for(int i = 0; i < utentes.size(); i++) {
 
-        System.out.println("Escolha uma especialidade: ");
-        especialidade = entradaDados.nextLine();
+            System.out.println("NÚMERO DE UTENTE: " + utentes.get(i).getNumeroUtente());
+            System.out.println("Nome: " + utentes.get(i).getNome());
+            System.out.println("Idade: " + utentes.get(i).getIdade());
 
-        // VERIFICA SE A ESPECIALIDADE É VÁLIDA OU NÃO
-        // INDEPENDENTEMENTE DE METER UMA ESPECIALIDADE QUE NÃO EXISTE, O PROGRAMA NÃO REBENTA
-
-        for (String especialidadeExistente : Medico.especialidades) {
-            if (especialidadeExistente.equals(especialidade)) {
-                encontreiEspecialidade = true;
-                break;
-            }
-        }
-
-        if (!encontreiEspecialidade) {
-            System.out.println("MÉTODO INTERROMPIDO");
-            return;
-        }
-
-        List<Medico> listaFiltradaCopiada = medicos.stream()
-                .filter(p -> p.getEspecialidade().equals(especialidade))
-                .collect(Collectors.toList());
-
-        for(int i = 0; i < listaFiltradaCopiada.size(); i++) {
-
-            System.out.println("NÚMERO DE MÉDICO: " + listaFiltradaCopiada.get(i).getNumeroMedico());
-            System.out.println("Nome: " + listaFiltradaCopiada.get(i).getNome());
-            System.out.println("Idade: " + listaFiltradaCopiada.get(i).getIdade());
-            System.out.println("Especialidade: " + listaFiltradaCopiada.get(i).getEspecialidade());
+            if (utentes.get(i).getTemSeguro())
+                System.out.println("O utente tem seguro.");
+            else
+                System.out.println("O utente não tem seguro.");
 
             System.out.println("////////////////////////////////////");
 
         }
 
     }
-
-    // LISTARMEDICOS ESTÁ INCOMPLETO
 
     public static void listarInfoMedicos() {
 
@@ -439,28 +462,19 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void avaliarAlguem(Medico medico) {
+    public static void listarInfoMedicosEspecialidade(List<Medico> listaFiltrada) {
 
-        double nota;
-        double media;
-        DecimalFormat mediaArredondada = new DecimalFormat(".##");
+        for(int i = 0; i < listaFiltrada.size(); i++) {
 
-        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+            System.out.println("NÚMERO DE MÉDICO: " + listaFiltrada.get(i).getNumeroMedico());
+            System.out.println("Nome: " + listaFiltrada.get(i).getNome());
+            System.out.println("Idade: " + listaFiltrada.get(i).getIdade());
+            System.out.println("Especialidade: " + listaFiltrada.get(i).getEspecialidade());
 
-        System.out.println("Avaliação (inteiro): ");
-        nota = entradaDados.nextDouble();
+            System.out.println("////////////////////////////////////");
 
-        medico.setNumAvaliacoes(medico.getNumAvaliacoes() + 1); // incrementa número de avaliações feitas
-        medico.setSomaNotas(medico.getSomaNotas() + nota); // soma o total da nota
-
-
-        media = Avaliacao.calculaMedia(medico.getSomaNotas(), medico.getNumAvaliacoes()); // re-calcula a média
-        System.out.println("A média calculada: " + mediaArredondada.format(media));
-
-        medico.setAvaliacaoMedia(media);
-
-        return;
+        }
 
     }
-    
+
 }
