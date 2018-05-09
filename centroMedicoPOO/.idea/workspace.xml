@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b722d1a-f74d-4292-81ce-b1ab1816e94f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -13,65 +14,84 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CentroMedicoPOO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedicoPOO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CentroMedico.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-                <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-                <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
-                <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
-                <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-                <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Avaliacao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Avaliacao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pagamento.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Pagamento.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Medico.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Medico.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="85" column="50" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="CentroMedicoPOO.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedicoPOO.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="195">
+                  <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CentroMedico.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="346">
+                  <caret line="510" column="2" lean-forward="true" selection-start-line="510" selection-start-column="2" selection-end-line="510" selection-end-column="2" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
+                    <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
+                    <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
+                    <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Avaliacao.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Avaliacao.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="195">
+                  <caret line="19" selection-start-line="19" selection-end-line="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Pagamento.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Pagamento.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Medico.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Medico.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="960">
+                  <caret line="85" column="50" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="CentroMedico.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-2589">
+                  <caret line="36" column="39" lean-forward="true" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -85,7 +105,11 @@
       <find>avaliacao</find>
       <find>dias</find>
       <find>somaNotas</find>
+      <find>listaTESTESCLASSIF</find>
     </findStrings>
+    <replaceStrings>
+      <replace>listaFiltrada</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -116,6 +140,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,7 +163,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -251,11 +275,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49812934" weight="0.32980973" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5093533" side_tool="true" visible="true" weight="0.24418604" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5104222" side_tool="true" visible="true" weight="0.26955602" />
       <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49064672" visible="true" weight="0.24418604" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48957777" visible="true" weight="0.26955602" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49973276" weight="0.3498943" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10368787" />
       <window_info id="Learn" order="4" />
@@ -318,11 +342,9 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-            <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-            <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
             <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
             <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-            <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
+            <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
           </folding>
         </state>
       </provider>
@@ -358,11 +380,9 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-            <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-            <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
             <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
             <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-            <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
+            <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
           </folding>
         </state>
       </provider>
@@ -405,11 +425,9 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-            <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-            <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
             <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
             <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-            <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
+            <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
           </folding>
         </state>
       </provider>
@@ -483,11 +501,9 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-            <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-            <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
             <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
             <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-            <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
+            <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
           </folding>
         </state>
       </provider>
@@ -568,11 +584,9 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-            <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-            <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
             <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
             <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-            <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
+            <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
           </folding>
         </state>
       </provider>
@@ -612,11 +626,9 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-            <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-            <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
             <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
             <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-            <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
+            <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
           </folding>
         </state>
       </provider>
@@ -687,14 +699,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedicoPOO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="195">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Medico.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
+        <state relative-caret-position="960">
           <caret line="85" column="50" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -705,29 +717,27 @@
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Avaliacao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/Pagamento.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/centromedicopoo/CentroMedico.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        <state relative-caret-position="346">
+          <caret line="510" column="2" lean-forward="true" selection-start-line="510" selection-start-column="2" selection-end-line="510" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#menuPrincipal#0;class#CentroMedico#0" />
-            <element signature="method#menuListarUtentes#0;class#CentroMedico#0" />
-            <element signature="method#menuListarMedicos#0;class#CentroMedico#0" />
             <element signature="method#listarInfoUtentes#0;class#CentroMedico#0" />
             <element signature="method#listarInfoMedicos#0;class#CentroMedico#0" />
-            <element signature="method#listarInfoMedicosEspecialidade#0;class#CentroMedico#0" />
+            <element signature="method#listarInfoMedicos#1;class#CentroMedico#0" />
           </folding>
         </state>
       </provider>

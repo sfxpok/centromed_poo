@@ -1,11 +1,15 @@
 package centromedicopoo;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CentroMedico extends CentroMedicoPOO {
 
@@ -244,7 +248,7 @@ public class CentroMedico extends CentroMedicoPOO {
                 .filter(p -> p.getEspecialidade().equals(especialidade))
                 .collect(Collectors.toList());
 
-        listarInfoMedicosEspecialidade(listaFiltradaCopiada);
+        listarInfoMedicos(listaFiltradaCopiada);
 
     }
 
@@ -272,6 +276,17 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    public static void consultarClassificacoesOrdenadas() {
+
+        List<Medico> listaOrdenadaClassificacao = new ArrayList<>(medicos);
+
+        listaOrdenadaClassificacao.sort(Comparator.comparingDouble(Medico::getAvaliacaoMedia)
+                .reversed());
+
+        listarInfoMedicos(listaOrdenadaClassificacao);
+
+    }
+
     /////////////////////////////////////////////////////
     ///////////                               ///////////
     ///////////                               ///////////
@@ -285,7 +300,12 @@ public class CentroMedico extends CentroMedicoPOO {
     public static void menuPrincipal() {
 
         boolean sair = true;
-        // Medico medicoAvaliado = new Medico("Ana", 32, "Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
+
+        Medico medicoAvaliado = new Medico("Ana", 32, "Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
+        Medico medicoAvaliadoDois = new Medico("Bruno", 47, "Pediatra"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
+
+        medicos.add(medicoAvaliado);
+        medicos.add(medicoAvaliadoDois);
 
         do {
 
@@ -314,7 +334,7 @@ public class CentroMedico extends CentroMedicoPOO {
                     adicionarMedico();
                     break;
                 case 3:
-                    adicionarConsulta();
+                    // adicionarConsulta();
                     break;
                 case 4:
                     //
@@ -334,9 +354,10 @@ public class CentroMedico extends CentroMedicoPOO {
                 case 9:
                     sair = false;
                     break;
-//                case 10:
-//                    avaliarAlguem(medicoAvaliado);
-//                    break;
+                case 10:
+                    avaliarAlguem(medicoAvaliado);
+                    avaliarAlguem(medicoAvaliadoDois);
+                    break;
                 default:
                     System.out.println("\nValor inválido\n");
             }
@@ -405,7 +426,8 @@ public class CentroMedico extends CentroMedicoPOO {
                     consultarEspecialidadeMedico();
                     break;
                 case 2:
-                    listarInfoMedicos();
+                    // listarInfoMedicos();
+                    consultarClassificacoesOrdenadas();
                     break;
                 case 3:
                     sair = false;
@@ -451,10 +473,13 @@ public class CentroMedico extends CentroMedicoPOO {
 
         for(int i = 0; i < medicos.size(); i++) {
 
+            System.out.println("////////////////////////////////////");
+
             System.out.println("NÚMERO DE MÉDICO: " + medicos.get(i).getNumeroMedico());
             System.out.println("Nome: " + medicos.get(i).getNome());
             System.out.println("Idade: " + medicos.get(i).getIdade());
             System.out.println("Especialidade: " + medicos.get(i).getEspecialidade());
+            System.out.println("Avaliação média: " + medicos.get(i).getAvaliacaoMedia());
 
             System.out.println("////////////////////////////////////");
 
@@ -462,19 +487,37 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void listarInfoMedicosEspecialidade(List<Medico> listaFiltrada) {
+    public static void listarInfoMedicos(List<Medico> listaFiltrada) {
 
         for(int i = 0; i < listaFiltrada.size(); i++) {
+
+            System.out.println("////////////////////////////////////");
 
             System.out.println("NÚMERO DE MÉDICO: " + listaFiltrada.get(i).getNumeroMedico());
             System.out.println("Nome: " + listaFiltrada.get(i).getNome());
             System.out.println("Idade: " + listaFiltrada.get(i).getIdade());
             System.out.println("Especialidade: " + listaFiltrada.get(i).getEspecialidade());
+            System.out.println("Avaliação média: " + listaFiltrada.get(i).getAvaliacaoMedia());
 
             System.out.println("////////////////////////////////////");
 
         }
 
     }
+
+//    public static void listarInfoMedicosFiltrados(List<Medico> listaFiltrada) {
+//
+//        for(int i = 0; i < listaFiltrada.size(); i++) {
+//
+//            System.out.println("NÚMERO DE MÉDICO: " + listaFiltrada.get(i).getNumeroMedico());
+//            System.out.println("Nome: " + listaFiltrada.get(i).getNome());
+//            System.out.println("Idade: " + listaFiltrada.get(i).getIdade());
+//            System.out.println("Especialidade: " + listaFiltrada.get(i).getEspecialidade());
+//
+//            System.out.println("////////////////////////////////////");
+//
+//        }
+//
+//    }
 
 }
