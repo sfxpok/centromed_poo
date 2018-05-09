@@ -2,9 +2,9 @@ package centromedicopoo;
 
 public class Avaliacao {
 
-    private int nota;
+    private double nota;
 
-    public Avaliacao(int nota) {
+    public Avaliacao(double nota) {
         this.nota = nota;
     }
 
@@ -12,7 +12,7 @@ public class Avaliacao {
         nota = 0;
     }
 
-    public static double calculaMedia(int nota, int avaliacoes) {
+    public static double calculaMedia(double nota, int avaliacoes) {
         return nota/avaliacoes;
     }
 

@@ -8,6 +8,7 @@ package centromedicopoo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.text.DecimalFormat;
 
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
@@ -24,6 +25,7 @@ public class CentroMedico extends CentroMedicoPOO {
     public static void menuPrincipal() {
 
         boolean sair = true;
+        // Medico medicoAvaliado = new Medico("Ana", 32, "Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
 
         do {
 
@@ -35,7 +37,8 @@ public class CentroMedico extends CentroMedicoPOO {
                     + "6 - Listar médicos\n" // menuListarMedicos
                     + "7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
                     + "8 - Número de consultas que o centro médico já realizou\n" // ?
-                    + "9 - Sair do programa\n"); // ?
+                    + "9 - Sair do programa\n" // ?
+                    + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n");
 
             Scanner entradaDados = new Scanner(System.in, "Cp1252");
             int op;
@@ -71,6 +74,9 @@ public class CentroMedico extends CentroMedicoPOO {
                 case 9:
                     sair = false;
                     break;
+//                case 10:
+//                    avaliarAlguem(medicoAvaliado);
+//                    break;
                 default:
                     System.out.println("\nValor inválido\n");
             }
@@ -433,32 +439,27 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    // NUNCA TESTADO, PROVAVELMENTE NÃO FUNCIONA //
+    public static void avaliarAlguem(Medico medico) {
 
-    public static void avaliarAlguem(Utente utente, Medico medico) {
-
-        int nota;
+        double nota;
         double media;
+        DecimalFormat mediaArredondada = new DecimalFormat(".##");
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
 
-        ////////////// *** APENAS PARA TESTES *** //////////////
-
-        // insere medico aqui
-
-        ////////////////////////////////////////////////////////
-
-
-
         System.out.println("Avaliação (inteiro): ");
-        nota = entradaDados.nextInt();
+        nota = entradaDados.nextDouble();
 
         medico.setNumAvaliacoes(medico.getNumAvaliacoes() + 1); // incrementa número de avaliações feitas
         medico.setSomaNotas(medico.getSomaNotas() + nota); // soma o total da nota
 
+
         media = Avaliacao.calculaMedia(medico.getSomaNotas(), medico.getNumAvaliacoes()); // re-calcula a média
+        System.out.println("A média calculada: " + mediaArredondada.format(media));
 
         medico.setAvaliacaoMedia(media);
+
+        return;
 
     }
     
