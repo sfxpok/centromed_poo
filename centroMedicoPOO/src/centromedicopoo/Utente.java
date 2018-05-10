@@ -40,6 +40,10 @@ public class Utente extends Individuo {
         this.descontoAcumulado = descontoAcumulado;
     }
 
+    public Utente(int numeroUtente) {
+        this.numeroUtente = numeroUtente;
+    }
+
     ///////////// Getters e setters /////////////
     
     public int getNumeroUtente() {

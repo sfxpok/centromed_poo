@@ -137,7 +137,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
         int numeroUtente;
         int numeroMedico;
-        String data;
+        int dia;
         // boolean flagDiagnostico;
         // boolean flagResultados;
 
@@ -184,20 +184,25 @@ public class CentroMedico extends CentroMedicoPOO {
 
         }
 
-        System.out.println("Insira a data (Ano): " + "\n");
-        data = entradaDados.next();
+        // O dia é inserido como inteiro e não existem meses nem anos, é tudo em dias
 
-        int a = Integer.parseInt(data);
+        System.out.println("Insira o dia: " + "\n");
+        dia = entradaDados.nextInt();
 
-        System.out.println("Insira a data (Mês): " + "\n");
-        data = entradaDados.next();
-
-        int m = Integer.parseInt(data);
-
-        System.out.println("Insira a data (Dia): " + "\n");
-        data = entradaDados.next();
-
-        int d = Integer.parseInt(data);
+//        System.out.println("Insira a data (Ano): " + "\n");
+//        data = entradaDados.next();
+//
+//        int a = Integer.parseInt(data);
+//
+//        System.out.println("Insira a data (Mês): " + "\n");
+//        data = entradaDados.next();
+//
+//        int m = Integer.parseInt(data);
+//
+//        System.out.println("Insira a data (Dia): " + "\n");
+//        data = entradaDados.next();
+//
+//        int d = Integer.parseInt(data);
 
         // ATRIBUIÇÃO DE DATA (EXEMPLO)
         // LocalDate testeData = LocalDate.of(a,m,d);
@@ -212,6 +217,11 @@ public class CentroMedico extends CentroMedicoPOO {
 
         // }
 
+        consultaTeste.setNumeroUtente(numeroUtente);
+        consultaTeste.setNumeroMedico(numeroMedico);
+        consultaTeste.setDia(dia);
+        // consultaTeste.setFlagDiagnostico(flagDiagnostico);
+        // consultaTeste.setFlagResultados(flagResultados);
 
     }
 
@@ -306,6 +316,14 @@ public class CentroMedico extends CentroMedicoPOO {
 
         medicos.add(medicoAvaliado);
         medicos.add(medicoAvaliadoDois);
+
+        Utente utenteConsulta = new Utente("Carolina",46,39123,0,0,0,true);
+        Utente utenteConsultaDois = new Utente("Carlos",20,39122,0,0,0,false);
+
+        utentes.add(utenteConsulta);
+        utentes.add(utenteConsultaDois);
+
+        // Os indivíduos acima são só para fins de teste.
 
         do {
 
