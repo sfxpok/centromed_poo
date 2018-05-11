@@ -297,6 +297,8 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    // public static void avancaUmDia() { }
+
     /////////////////////////////////////////////////////
     ///////////                               ///////////
     ///////////                               ///////////
@@ -311,13 +313,13 @@ public class CentroMedico extends CentroMedicoPOO {
 
         boolean sair = true;
 
-        Medico medicoAvaliado = new Medico("Ana", 32, "Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
-        Medico medicoAvaliadoDois = new Medico("Bruno", 47, "Pediatra"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
+        Medico medicoAvaliado = new Medico("Ana", 32, 102346,"Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
+        Medico medicoAvaliadoDois = new Medico("Bruno", 47, 103469, "Pediatra"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
 
         medicos.add(medicoAvaliado);
         medicos.add(medicoAvaliadoDois);
 
-        Utente utenteConsulta = new Utente("Carolina",46,39123,0,0,0,true);
+        Utente utenteConsulta = new Utente("Carlota",46,39123,0,0,0,true);
         Utente utenteConsultaDois = new Utente("Carlos",20,39122,0,0,0,false);
 
         utentes.add(utenteConsulta);
@@ -336,7 +338,8 @@ public class CentroMedico extends CentroMedicoPOO {
                     + "7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
                     + "8 - Número de consultas que o centro médico já realizou\n" // ?
                     + "9 - Sair do programa\n" // ?
-                    + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n");
+                    + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n"
+                    + "11 - Avançar um dia\n");
 
             Scanner entradaDados = new Scanner(System.in, "Cp1252");
             int op;
@@ -352,7 +355,7 @@ public class CentroMedico extends CentroMedicoPOO {
                     adicionarMedico();
                     break;
                 case 3:
-                    // adicionarConsulta();
+                    adicionarConsulta();
                     break;
                 case 4:
                     //
@@ -375,6 +378,9 @@ public class CentroMedico extends CentroMedicoPOO {
                 case 10:
                     avaliarAlguem(medicoAvaliado);
                     avaliarAlguem(medicoAvaliadoDois);
+                    break;
+                case 11:
+                    // avancaUmDia();
                     break;
                 default:
                     System.out.println("\nValor inválido\n");

@@ -36,8 +36,9 @@ public class Medico extends Individuo {
         this.somaNotas = somaNotas;
     }
 
-    public Medico(String nome, int idade, String especialidade) {
+    public Medico(String nome, int idade, int numeroMedico, String especialidade) {
         super(nome, idade);
+        this.numeroMedico = numeroMedico;
         this.especialidade = especialidade;
     }
 
