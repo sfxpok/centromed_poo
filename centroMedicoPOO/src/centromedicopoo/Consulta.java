@@ -41,21 +41,13 @@ public class Consulta {
         return numeroMedico;
     }
 
-    public void setNumeroUtente(int numeroUtente) {
-        this.numeroUtente = numeroUtente;
-    }
-
-    public void setNumeroMedico(int numeroMedico) {
-        this.numeroMedico = numeroMedico;
-    }
-
-    public Utente getUtenteTesteConsulta() {
-        return utenteTesteConsulta;
-    }
-
-    public Medico getMedicoTesteConsulta() {
-        return medicoTesteConsulta;
-    }
+//    public Utente getUtenteTesteConsulta() {
+//        return utenteTesteConsulta;
+//    }
+//
+//    public Medico getMedicoTesteConsulta() {
+//        return medicoTesteConsulta;
+//    }
 
     public int getDia() {
         return dia;
@@ -69,13 +61,21 @@ public class Consulta {
         return flagResultados;
     }
 
-    public void setUtenteTesteConsulta(Utente utenteTesteConsulta) {
-        this.utenteTesteConsulta = utenteTesteConsulta;
+    public void setNumeroUtente(int numeroUtente) {
+        this.numeroUtente = numeroUtente;
     }
 
-    public void setMedicoTesteConsulta(Medico medicoTesteConsulta) {
-        this.medicoTesteConsulta = medicoTesteConsulta;
+    public void setNumeroMedico(int numeroMedico) {
+        this.numeroMedico = numeroMedico;
     }
+
+//    public void setUtenteTesteConsulta(Utente utenteTesteConsulta) {
+//        this.utenteTesteConsulta = utenteTesteConsulta;
+//    }
+//
+//    public void setMedicoTesteConsulta(Medico medicoTesteConsulta) {
+//        this.medicoTesteConsulta = medicoTesteConsulta;
+//    }
 
     public void setDia(int dia) {
         this.dia = dia;

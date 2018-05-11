@@ -16,6 +16,11 @@ public class CentroMedico extends CentroMedicoPOO {
     private static List<Utente> utentes = new ArrayList<>();
     private static List<Medico> medicos = new ArrayList<>();
 
+    private static int contadorInstanciasNumeroUtente = 0;
+    private static int contadorInstanciasNumeroMedico = 0;
+
+    // private static List<> numeroUtentes = new ArrayList<>();
+
     public static void adicionarUtente() {
 
         String nome;
@@ -36,7 +41,10 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.print("Idade: " + "\n");
         idade = entradaDados.nextInt();
 
-        numeroUtente = geradorAleatorio.nextInt(100000);
+        // numeroUtente = geradorAleatorio.nextInt(100000);
+
+        contadorInstanciasNumeroUtente++;
+        numeroUtente = contadorInstanciasNumeroUtente;
 
         System.out.print("O utente tem seguro? S/N: " + "\n");
 
@@ -95,8 +103,10 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.println("Idade: " + "\n");
         idade = entradaDados.nextInt();
 
-        // O número único do médico começa em 100000
-        numeroMedico = geradorAleatorio.nextInt(100000) + 100000;
+        // numeroMedico = geradorAleatorio.nextInt(100000) + 100000;
+
+        contadorInstanciasNumeroMedico++;
+        numeroMedico = contadorInstanciasNumeroMedico;
 
         System.out.println("Especialidade: " + "\n");
 
@@ -141,6 +151,9 @@ public class CentroMedico extends CentroMedicoPOO {
         // boolean flagDiagnostico;
         // boolean flagResultados;
 
+        Utente utente = null;
+        Medico medico = null;
+
         boolean numeroUtenteCorrecto = false;
         boolean numeroMedicoCorrecto = false;
 
@@ -155,15 +168,15 @@ public class CentroMedico extends CentroMedicoPOO {
                 // .filter(item -> item.getNumeroUtente() == numeroUtente)
                 // .collect(Collectors.toList());
 
-        for(int i = 0; i < utentes.size(); i++) {
-
-            if (utentes.get(i).getNumeroUtente() == numeroUtente) {
-                numeroUtenteCorrecto = true;
-                System.out.println("NÚMERO ESTÁ CORRETO");
+        for (int i = 0; i < utentes.size(); i++) {
+            utente = utentes.get(i);
+            if (utente.getNumeroUtente() == numeroUtente) {
+                System.out.println("NÚMERO ENCONTRADO");
+                break;
             }
             else {
-                numeroUtenteCorrecto = false;
-                System.out.println("NÚMERO ESTÁ INCORRETO");
+                System.out.println("NUMERO NÃO ENCONTRADO");
+                // break;
             }
 
         }
@@ -171,15 +184,15 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.println("Insira o número de um médico " + "\n");
         numeroMedico = entradaDados.nextInt();
 
-        for(int i = 0; i < medicos.size(); i++) {
-
-            if (medicos.get(i).getNumeroMedico() == numeroMedico) {
-                numeroMedicoCorrecto = true;
-                System.out.println("NÚMERO ESTÁ CORRETO");
+        for (int i = 0; i < medicos.size(); i++) {
+            medico = medicos.get(i);
+            if (medico.getNumeroMedico() == numeroMedico) {
+                System.out.println("NÚMERO ENCONTRADO");
+                break;
             }
             else {
-                numeroMedicoCorrecto = false;
-                System.out.println("NÚMERO ESTÁ INCORRETO");
+                System.out.println("NUMERO NÃO ENCONTRADO");
+                // break;
             }
 
         }
@@ -188,34 +201,6 @@ public class CentroMedico extends CentroMedicoPOO {
 
         System.out.println("Insira o dia: " + "\n");
         dia = entradaDados.nextInt();
-
-//        System.out.println("Insira a data (Ano): " + "\n");
-//        data = entradaDados.next();
-//
-//        int a = Integer.parseInt(data);
-//
-//        System.out.println("Insira a data (Mês): " + "\n");
-//        data = entradaDados.next();
-//
-//        int m = Integer.parseInt(data);
-//
-//        System.out.println("Insira a data (Dia): " + "\n");
-//        data = entradaDados.next();
-//
-//        int d = Integer.parseInt(data);
-
-        // ATRIBUIÇÃO DE DATA (EXEMPLO)
-        // LocalDate testeData = LocalDate.of(a,m,d);
-
-
-        // Aqui assumimos logo que a consulta é de diagnóstico, obviamente
-
-
-        // if(registaConsulta) { // não sei, talvez tenha que usar Interface...
-
-            // consultaTeste
-
-        // }
 
         consultaTeste.setNumeroUtente(numeroUtente);
         consultaTeste.setNumeroMedico(numeroMedico);
