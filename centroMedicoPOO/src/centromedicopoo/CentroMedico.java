@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 import java.util.Comparator;
@@ -294,8 +293,8 @@ public class CentroMedico extends CentroMedicoPOO {
         medicos.add(medicoAvaliado);
         medicos.add(medicoAvaliadoDois);
 
-        Utente utenteConsulta = new Utente("Carlota",46,39123,0,0,0,true);
-        Utente utenteConsultaDois = new Utente("Carlos",20,39122,0,0,0,false);
+        Utente utenteConsulta = new Utente("Carlota",46,39123,0,0,0,true,null);
+        Utente utenteConsultaDois = new Utente("Carlos",20,39122,0,0,0,false,null);
 
         utentes.add(utenteConsulta);
         utentes.add(utenteConsultaDois);

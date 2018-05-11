@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package centromedicopoo;
 
-/**
- *
- * @author r
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utente extends Individuo {
     
     // Variáveis de instância
@@ -18,16 +12,19 @@ public class Utente extends Individuo {
     private double descontoAcumulado;
     private double dinheiroGasto;
     private boolean temSeguro;
-    
+
+    List<Consulta> testeConsultasLista = new ArrayList<>();
+
     // Construtor
     
-    public Utente(String nome, int idade, int numeroUtente, int consultasSemana, double descontoAcumulado, double dinheiroGasto, boolean temSeguro) {
+    public Utente(String nome, int idade, int numeroUtente, int consultasSemana, double descontoAcumulado, double dinheiroGasto, boolean temSeguro, List<Consulta> testeConsultasLista) {
         super(nome, idade);
         this.numeroUtente = numeroUtente;
         this.consultasSemana = consultasSemana;
         this.descontoAcumulado = descontoAcumulado;
         this.dinheiroGasto = dinheiroGasto;
         this.temSeguro = temSeguro;
+        this.testeConsultasLista = testeConsultasLista;
     }
     
     public Utente() {
