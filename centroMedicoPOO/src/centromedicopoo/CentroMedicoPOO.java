@@ -5,10 +5,6 @@
  */
 package centromedicopoo;
 
-/**
- *
- * @author r
- */
 public class CentroMedicoPOO {
 
     // List utentes = new ArrayList();

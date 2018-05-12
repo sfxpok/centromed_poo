@@ -1,0 +1,3 @@
+Ana,23,S
+Ricardo,47,N
+Carla,42,S

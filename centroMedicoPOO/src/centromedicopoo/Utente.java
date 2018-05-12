@@ -13,7 +13,7 @@ public class Utente extends Individuo {
     private double dinheiroGasto;
     private boolean temSeguro;
 
-    List<Consulta> testeConsultasLista = new ArrayList<>();
+    private List<Consulta> testeConsultasLista = new ArrayList<>();
 
     // Construtor
     
@@ -29,6 +29,12 @@ public class Utente extends Individuo {
     
     public Utente() {
         
+    }
+
+    public Utente(String nome, int idade, int numeroUtente, boolean temSeguro) {
+        super(nome, idade);
+        this.numeroUtente = numeroUtente;
+        this.temSeguro = temSeguro;
     }
 
     public Utente(String nome, boolean temSeguro, double descontoAcumulado) {
@@ -62,6 +68,10 @@ public class Utente extends Individuo {
     public boolean getTemSeguro() {
         return temSeguro;
     }
+
+    public List<Consulta> getTesteConsultasLista() {
+        return new ArrayList<Consulta>(this.testeConsultasLista);
+    }
     
     public void setNumeroUtente(int numeroUtente) {
         this.numeroUtente = numeroUtente;
@@ -81,6 +91,14 @@ public class Utente extends Individuo {
     
     public void setTemSeguro(boolean temSeguro) {
         this.temSeguro = temSeguro;
+    }
+
+//    public void setTesteConsultasLista(int numeroUtente) {
+//        this.numeroUtente = numeroUtente;
+//    }
+
+    public void setTesteConsultasLista(List<Consulta> list) {
+        this.testeConsultasLista = new ArrayList<Consulta>(list);
     }
 
     // public String toString() { }

@@ -2,11 +2,13 @@ package centromedicopoo;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-import java.util.Comparator;
+import java.text.DecimalFormat;
+
+import java.io.*;
 
 public class CentroMedico extends CentroMedicoPOO {
 
@@ -15,6 +17,13 @@ public class CentroMedico extends CentroMedicoPOO {
 
     private static int contadorInstanciasNumeroUtente = 0;
     private static int contadorInstanciasNumeroMedico = 0;
+
+    private static final String FICHEIRO_UTENTES = "utentes.txt";
+    private static final String FICHEIRO_MEDICOS = "medicos.txt";
+    private static final String FICHEIRO_CONSULTAS = "consultas.txt";
+
+
+    // private static Utente numberlist;
 
     public static void adicionarUtente() {
 
@@ -197,6 +206,13 @@ public class CentroMedico extends CentroMedicoPOO {
         // consultaTeste.setFlagDiagnostico(flagDiagnostico);
         // consultaTeste.setFlagResultados(flagResultados);
 
+        List<Utente> listaFiltradaCopiadaTESTE = utentes.stream()
+                .filter(p -> p.getNumeroUtente() == numeroUtente)
+                .collect(Collectors.toList());
+
+        // collection.stream().anyMatch(x -> getNumeroMedico() == numeroMedico)
+
+
     }
 
     // public static void listarPagamentosUtentes() { }
@@ -273,6 +289,48 @@ public class CentroMedico extends CentroMedicoPOO {
 
     // public static void avancaUmDia() { }
 
+    public static void insereDadosFicheirosTexto() {
+
+        // o método tem que iterar os 3 ficheiros e pôr a informação toda nas listas
+
+        try {
+
+            FileReader inStream = new FileReader(FICHEIRO_UTENTES);
+            BufferedReader bR = new BufferedReader(inStream);
+            String linha = bR.readLine();
+
+            // Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+            while (linha != null) {
+                // ADICIONA O QUE ESTÁ NO FICHEIRO ÀS LISTAS
+
+                String[] campos = linha.split(",");
+
+                linha = bR.readLine();
+
+                String nome = campos[0];
+                int idade = Integer.parseInt(campos[1]);
+                boolean temSeguro = Boolean.parseBoolean(campos[2]);
+                int numeroUtente;
+
+                contadorInstanciasNumeroUtente++;
+                numeroUtente = contadorInstanciasNumeroUtente;
+
+                Utente novoUtenteDoFicheiro = new Utente(nome, idade, numeroUtente, temSeguro);
+
+                utentes.add(novoUtenteDoFicheiro);
+
+            }
+
+            bR.close();
+
+        }
+
+        catch(IOException ioe) {
+            System.out.println("Ocorreu um erro!");
+        }
+    }
+
     /////////////////////////////////////////////////////
     ///////////                               ///////////
     ///////////                               ///////////
@@ -313,7 +371,8 @@ public class CentroMedico extends CentroMedicoPOO {
                     + "8 - Número de consultas que o centro médico já realizou\n" // ?
                     + "9 - Sair do programa\n" // ?
                     + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n"
-                    + "11 - Avançar um dia\n");
+                    + "11 - Avançar um dia\n"
+                    + "12 - !!! DEBUGGING !!! - Ler o ficheiro com dados dos utentes\n");
 
             Scanner entradaDados = new Scanner(System.in, "Cp1252");
             int op;
@@ -355,6 +414,9 @@ public class CentroMedico extends CentroMedicoPOO {
                     break;
                 case 11:
                     // avancaUmDia();
+                    break;
+                case 12:
+                    insereDadosFicheirosTexto();
                     break;
                 default:
                     System.out.println("\nValor inválido\n");
