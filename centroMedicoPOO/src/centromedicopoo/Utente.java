@@ -5,8 +5,6 @@ import java.util.List;
 
 public class Utente extends Individuo {
     
-    // Variáveis de instância
-    
     private int numeroUtente;
     private int consultasSemana;
     private double descontoAcumulado;
@@ -15,8 +13,8 @@ public class Utente extends Individuo {
 
     private List<Consulta> testeConsultasLista = new ArrayList<>();
 
-    // Construtor
-    
+    ////////////////////////// *** Construtores *** //////////////////////////
+
     public Utente(String nome, int idade, int numeroUtente, int consultasSemana, double descontoAcumulado, double dinheiroGasto, boolean temSeguro, List<Consulta> testeConsultasLista) {
         super(nome, idade);
         this.numeroUtente = numeroUtente;
@@ -47,7 +45,7 @@ public class Utente extends Individuo {
         this.numeroUtente = numeroUtente;
     }
 
-    ///////////// Getters e setters /////////////
+    ////////////////////////// *** Getters e setters *** //////////////////////////
     
     public int getNumeroUtente() {
         return numeroUtente;
@@ -102,7 +100,5 @@ public class Utente extends Individuo {
     }
 
     // public String toString() { }
-    
-    /////////////////////////////////////////////
-    
+
 }

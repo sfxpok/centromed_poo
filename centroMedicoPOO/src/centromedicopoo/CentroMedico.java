@@ -25,6 +25,10 @@ public class CentroMedico extends CentroMedicoPOO {
 
     // private static Utente numberlist;
 
+    /**
+     * Adiciona um utente à lista de utentes do centro médico
+     */
+
     public static void adicionarUtente() {
 
         String nome;
@@ -32,25 +36,30 @@ public class CentroMedico extends CentroMedicoPOO {
         int numeroUtente;
         String temSeguro;
 
+        // Booleano que serve apenas de condição para adicionar um novo utente
         boolean seguroInvalido = false;
 
         Scanner entradaDados = new Scanner(System.in, "Cp1252");
-        
+
         Utente utente = new Utente();
-        
+
         System.out.print("Nome: " + "\n");
         nome = entradaDados.nextLine();
         
         System.out.print("Idade: " + "\n");
         idade = entradaDados.nextInt();
 
-        contadorInstanciasNumeroUtente++;
-        numeroUtente = contadorInstanciasNumeroUtente;
-
         System.out.print("O utente tem seguro? S/N: " + "\n");
 
-        temSeguro = entradaDados.nextLine(); // arranja isto? não sei porquê é que tenho que ter 2
+        /* Tem que haver 2 linhas que fazem a mesma tarefa porque
+        caso contrário não funciona */
+
         temSeguro = entradaDados.nextLine();
+        temSeguro = entradaDados.nextLine();
+
+        /* Condição para saber se a letra inserida corresponde a um
+        valor válido ou não. Também já pode atribuir um booleano (temSeguro)
+        ao novo utente que vai (ou não) ser adicionado ao centro médico */
 
         if (temSeguro.equals("S") || temSeguro.equals("s")) {
             utente.setTemSeguro(true);
@@ -69,7 +78,17 @@ public class CentroMedico extends CentroMedicoPOO {
 
         /////////////////////////////////////////////
 
+        /* A condição é verdadeira se e só se um valor inválido foi
+        escrito na pergunta anterior (se tem seguro ou não) */
+
         if(!seguroInvalido) {
+
+            /* Esta incrementação diz-nos que um novo utente vai ser adicionado
+            ao centro médico e este contador vai servir de número de utente */
+
+            contadorInstanciasNumeroUtente++;
+            numeroUtente = contadorInstanciasNumeroUtente;
+
             utente.setNome(nome);
             utente.setIdade(idade);
             utente.setNumeroUtente(numeroUtente);
@@ -252,6 +271,10 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    public static double calculaMedia(double nota, int avaliacoes) {
+        return nota/avaliacoes;
+    }
+
     public static void avaliarAlguem(Medico medico) {
 
         double nota;
@@ -267,7 +290,7 @@ public class CentroMedico extends CentroMedicoPOO {
         medico.setSomaNotas(medico.getSomaNotas() + nota); // soma o total da nota
 
 
-        media = Avaliacao.calculaMedia(medico.getSomaNotas(), medico.getNumAvaliacoes()); // re-calcula a média
+        media = calculaMedia(medico.getSomaNotas(), medico.getNumAvaliacoes()); // re-calcula a média
         System.out.println("A média calculada: " + mediaArredondada.format(media));
 
         medico.setAvaliacaoMedia(media);
@@ -297,9 +320,11 @@ public class CentroMedico extends CentroMedicoPOO {
 
             FileReader inStreamUtentes = new FileReader(FICHEIRO_UTENTES);
             FileReader inStreamMedicos = new FileReader(FICHEIRO_MEDICOS);
+            // FileReader inStreamConsultas = new FileReader(FICHEIRO_CONSULTAS);
 
             BufferedReader bRUtentes = new BufferedReader(inStreamUtentes);
             BufferedReader bRMedicos = new BufferedReader(inStreamMedicos);
+            // BufferedReader bRConsultas = new BufferedReader(inStreamConsultas);
 
             String leituraUtenteLinha = bRUtentes.readLine();
 

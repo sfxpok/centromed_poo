@@ -1,22 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package centromedicopoo;
 
-/**
- *
- * @author r
- */
 public class Individuo {
-    
-    // Variáveis de instância
     
     private String nome;
     private int idade;
-    
-    // Construtor
+
+    ////////////////////////// *** Construtores *** //////////////////////////
     
     public Individuo(String nome, int idade) {
         this.nome = nome;
@@ -31,8 +20,8 @@ public class Individuo {
         this.nome = "";
         this.idade = 0;
     }
-    
-    ///////////// Getters e setters /////////////
+
+    ////////////////////////// *** Getters e setters *** //////////////////////////
     
     public String getNome() {
         return nome;
@@ -51,7 +40,5 @@ public class Individuo {
     }
 
     // public String toString() { }
-
-    /////////////////////////////////////////////
     
 }

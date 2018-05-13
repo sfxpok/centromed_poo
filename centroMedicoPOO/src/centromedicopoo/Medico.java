@@ -1,21 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package centromedicopoo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- *
- * @author r
- */
 public class Medico extends Individuo {
-    
-    // Variáveis de instância
-    
+
     private int numeroMedico;
     private String especialidade;
     private double avaliacaoMedia;
@@ -24,7 +10,9 @@ public class Medico extends Individuo {
     private int numAvaliacoes;
     private double somaNotas;
 
-    // Construtores
+    static String[] especialidades = {"Pediatra","Cardiologia","Neurologia","Radiologia","Urologia"};
+
+    ////////////////////////// *** Construtores *** //////////////////////////
 
     public Medico(String nome, int idade, int numeroMedico, String especialidade, double avaliacaoMedia, int consultasDia, int numAvaliacoes, double somaNotas) {
         super(nome, idade);
@@ -46,8 +34,7 @@ public class Medico extends Individuo {
 
     }
 
-    static String[] especialidades = {"Pediatra","Cardiologia","Neurologia","Radiologia","Urologia"};
-
+    ////////////////////////// *** Getters e setters *** //////////////////////////
 
     public int getNumeroMedico() {
         return numeroMedico;
@@ -65,6 +52,10 @@ public class Medico extends Individuo {
         return consultasDia;
     }
 
+    public int getNumAvaliacoes() { return numAvaliacoes; }
+
+    public double getSomaNotas() { return somaNotas; }
+
     public void setNumeroMedico(int numeroMedico) {
         this.numeroMedico = numeroMedico;
     }
@@ -81,15 +72,9 @@ public class Medico extends Individuo {
         this.consultasDia = consultasDia;
     }
 
-    /////////////////////////////// CLASSES NOVAS ///////////////////////////////
-
-    public int getNumAvaliacoes() { return numAvaliacoes; }
-    public void setNumAvaliacoes(int numAvaliacoes) { this.numAvaliacoes = numAvaliacoes; }
-
-    public double getSomaNotas() { return somaNotas; }
     public void setSomaNotas(double somaNotas) { this.somaNotas = somaNotas; }
 
-    /////////////////////////////////////////////////////////////////////////////
+    public void setNumAvaliacoes(int numAvaliacoes) { this.numAvaliacoes = numAvaliacoes; }
 
     // public String toString() { }
 

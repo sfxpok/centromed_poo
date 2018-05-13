@@ -4,6 +4,8 @@ public class Avaliacao {
 
     private double nota;
 
+    ////////////////////////// *** Construtores *** //////////////////////////
+
     public Avaliacao(double nota) {
         this.nota = nota;
     }
@@ -12,8 +14,14 @@ public class Avaliacao {
         nota = 0;
     }
 
-    public static double calculaMedia(double nota, int avaliacoes) {
-        return nota/avaliacoes;
+    ////////////////////////// *** Getters e setters *** //////////////////////////
+
+    public double getNota() {
+        return nota;
+    }
+
+    public void setNota(double nota) {
+        this.nota = nota;
     }
 
 }

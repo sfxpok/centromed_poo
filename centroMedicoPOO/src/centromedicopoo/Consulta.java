@@ -1,11 +1,9 @@
 package centromedicopoo;
 
-import java.util.Date;
-
 public class Consulta {
 
-    private Utente utenteTesteConsulta;
-    private Medico medicoTesteConsulta;
+    // private Utente utenteTesteConsulta;
+    // private Medico medicoTesteConsulta;
     private int dia;
     private boolean flagDiagnostico;
     private boolean flagResultados;
@@ -21,6 +19,8 @@ public class Consulta {
 //        this.flagResultados = flagResultados;
 //    }
 
+    ////////////////////////// *** Construtores *** //////////////////////////
+
     public Consulta(int numeroUtente, int numeroMedico, int dia, boolean flagDiagnostico, boolean flagResultados) {
         this.numeroUtente = numeroUtente;
         this.numeroMedico = numeroMedico;
@@ -32,6 +32,8 @@ public class Consulta {
     public Consulta() {
 
     }
+
+    ////////////////////////// *** Getters e setters *** //////////////////////////
 
     public int getNumeroUtente() {
         return numeroUtente;
@@ -88,4 +90,7 @@ public class Consulta {
     public void setFlagResultados(boolean flagResultados) {
         this.flagResultados = flagResultados;
     }
+
+    // public String toString() { }
+
 }
