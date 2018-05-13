@@ -295,34 +295,80 @@ public class CentroMedico extends CentroMedicoPOO {
 
         try {
 
-            FileReader inStream = new FileReader(FICHEIRO_UTENTES);
-            BufferedReader bR = new BufferedReader(inStream);
-            String linha = bR.readLine();
+            FileReader inStreamUtentes = new FileReader(FICHEIRO_UTENTES);
+            FileReader inStreamMedicos = new FileReader(FICHEIRO_MEDICOS);
+
+            BufferedReader bRUtentes = new BufferedReader(inStreamUtentes);
+            BufferedReader bRMedicos = new BufferedReader(inStreamMedicos);
+
+            String leituraUtenteLinha = bRUtentes.readLine();
 
             // Scanner entradaDados = new Scanner(System.in,"Cp1252");
 
-            while (linha != null) {
+            while (leituraUtenteLinha != null) {
                 // ADICIONA O QUE ESTÁ NO FICHEIRO ÀS LISTAS
 
-                String[] campos = linha.split(",");
+                String[] campos = leituraUtenteLinha.split(",");
 
-                linha = bR.readLine();
+                leituraUtenteLinha = bRUtentes.readLine();
 
                 String nome = campos[0];
                 int idade = Integer.parseInt(campos[1]);
-                boolean temSeguro = Boolean.parseBoolean(campos[2]);
+
+                String temSeguro = campos[2];
+                boolean temSeguroBool = false;
+
+                if (temSeguro.equals("S") || temSeguro.equals("s")) {
+                    temSeguroBool = true;
+                    // utente.setDescontoAcumulado(0.40); // EDITAR ISTO
+                    System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO"); // APENAS PARA TESTES
+                    // ATRIBUI DESCONTO
+                }
+                else if (temSeguro.equals("N") || temSeguro.equals("n")) {
+                    temSeguroBool = false;
+                }
+
                 int numeroUtente;
 
                 contadorInstanciasNumeroUtente++;
                 numeroUtente = contadorInstanciasNumeroUtente;
 
-                Utente novoUtenteDoFicheiro = new Utente(nome, idade, numeroUtente, temSeguro);
+                Utente novoUtenteDoFicheiro = new Utente(nome, idade, numeroUtente, temSeguroBool);
 
                 utentes.add(novoUtenteDoFicheiro);
 
             }
 
-            bR.close();
+            bRUtentes.close();
+
+            /////////////////// Ficheiro Médicos ///////////////////
+
+            String leituraMedicoLinha = bRMedicos.readLine();
+
+            // Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+            while (leituraMedicoLinha != null) {
+                // ADICIONA O QUE ESTÁ NO FICHEIRO ÀS LISTAS
+
+                String[] campos = leituraMedicoLinha.split(",");
+
+                leituraMedicoLinha = bRMedicos.readLine();
+
+                String nome = campos[0];
+                int idade = Integer.parseInt(campos[1]);
+                String especialidade = campos[2];
+                int numeroMedico;
+
+                contadorInstanciasNumeroMedico++;
+                numeroMedico = contadorInstanciasNumeroMedico;
+
+                Medico novoMedicoDoFicheiro = new Medico(nome, idade, numeroMedico, especialidade);
+
+                medicos.add(novoMedicoDoFicheiro);
+
+            }
+
+            bRUtentes.close();
 
         }
 
@@ -330,6 +376,7 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("Ocorreu um erro!");
         }
     }
+
 
     /////////////////////////////////////////////////////
     ///////////                               ///////////
