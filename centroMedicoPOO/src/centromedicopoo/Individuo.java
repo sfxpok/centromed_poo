@@ -22,19 +22,39 @@ public class Individuo {
     }
 
     ////////////////////////// *** Getters e setters *** //////////////////////////
-    
+
+    /**
+     * Devolve o nome de um indivíduo
+     * @return nome de um indivíduo
+     */
+
     public String getNome() {
         return nome;
     }
+
+    /**
+     * Devolve a idade de um indivíduo
+     * @return idade de um indivíduo
+     */
     
     public int getIdade() {
         return idade;
     }
-    
+
+    /**
+     * Atribui um nome a um indivíduo
+     * @param nome nome de um indivíduo
+     */
+
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
+    /**
+     * Atribui uma idade a um indivíduo
+     * @param idade idade de um indivíduo
+     */
+
     public void setIdade(int idade) {
         this.idade = idade;
     }
