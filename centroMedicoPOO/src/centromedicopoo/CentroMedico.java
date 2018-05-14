@@ -102,6 +102,10 @@ public class CentroMedico extends CentroMedicoPOO {
         
     }
 
+    /**
+     * Adiciona um médico à lista de médicos do centro médico
+     */
+
     public static void adicionarMedico() {
 
         String nome;
@@ -109,6 +113,9 @@ public class CentroMedico extends CentroMedicoPOO {
         int numeroMedico;
         String especialidade;
 
+        /* registaMedico só serve para detectar se os dados inseridos estão corretos
+        especialidadeInvalida só serve para detectar se uma especialidade inserida existe
+        no centro médico */
         boolean registaMedico = false;
         boolean especialidadeInvalida = true;
 
@@ -122,13 +129,15 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.println("Idade: " + "\n");
         idade = entradaDados.nextInt();
 
-        contadorInstanciasNumeroMedico++;
-        numeroMedico = contadorInstanciasNumeroMedico;
-
         System.out.println("Especialidade: " + "\n");
 
-        especialidade = entradaDados.nextLine(); // arranja isto? não sei porquê é que tenho que ter 2
+        /* Tem que haver 2 linhas que fazem a mesma tarefa porque
+        caso contrário não funciona */
+
         especialidade = entradaDados.nextLine();
+        especialidade = entradaDados.nextLine();
+
+        /* Ciclo for para verificar se a especialidade inserida existe */
 
         for(int i = 0; i < Medico.especialidades.length; i++) {
             if(especialidade.equals(Medico.especialidades[i])) {
@@ -139,13 +148,24 @@ public class CentroMedico extends CentroMedicoPOO {
 
         }
 
+        // testes
         if(especialidadeInvalida){
             System.out.println("ESPECIALIDADE INVALIDA. Inserção de dados interrompida."); // APENAS TESTES
             // registaMedico = false;
             // menuPrincipal();
         }
 
+        /* A condição é verdadeira se e só se um valor inválido foi
+        escrito na pergunta anterior (se a especialidade existe ou não) */
+
         if(registaMedico) {
+
+            /* Esta incrementação diz-nos que um novo médico vai ser adicionado
+            ao centro médico e este contador vai servir de número de médico */
+
+            contadorInstanciasNumeroMedico++;
+            numeroMedico = contadorInstanciasNumeroMedico;
+
             medico.setNome(nome);
             medico.setIdade(idade);
             medico.setNumeroMedico(numeroMedico);
@@ -238,9 +258,17 @@ public class CentroMedico extends CentroMedicoPOO {
 
     // public static int numeroConsultasFeitas() { }
 
+    /**
+     * Cria uma lista filtrada de médicos com uma
+     * especialidade inserida pelo utilizador
+     */
+
     public static void consultarEspecialidadeMedico() {
 
         String especialidade;
+
+        /* encontreiEspecialidade serve para detectar se uma especialidade inserida existe
+        no centro médico */
         boolean encontreiEspecialidade = false;
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
@@ -248,8 +276,8 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.println("Escolha uma especialidade: ");
         especialidade = entradaDados.nextLine();
 
-        // VERIFICA SE A ESPECIALIDADE É VÁLIDA OU NÃO
-        // INDEPENDENTEMENTE DE METER UMA ESPECIALIDADE QUE NÃO EXISTE, O PROGRAMA NÃO REBENTA
+        /* O ciclo for procura pela especialidade inserida
+        pelo utilizador */
 
         for (String especialidadeExistente : Medico.especialidades) {
             if (especialidadeExistente.equals(especialidade)) {
@@ -263,6 +291,9 @@ public class CentroMedico extends CentroMedicoPOO {
             return;
         }
 
+        /* Caso o ciclo for tenha encontrado uma especialidade, é criada
+        a lista filtrada com médicos (com a dada especialidade pelo utlizador) */
+
         List<Medico> listaFiltradaCopiada = medicos.stream()
                 .filter(p -> p.getEspecialidade().equals(especialidade))
                 .collect(Collectors.toList());
@@ -271,15 +302,27 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    /**
+     * Calcula a média das avaliações de um dado médico
+     * @param nota soma das notas
+     * @param avaliacoes número de avaliações
+     * @return média de avaliações de um médico
+     */
+
     public static double calculaMedia(double nota, int avaliacoes) {
         return nota/avaliacoes;
     }
+
+    /**
+     * Avalia um médico com o input de um número
+     * @param medico instância de um médico
+     */
 
     public static void avaliarAlguem(Medico medico) {
 
         double nota;
         double media;
-        DecimalFormat mediaArredondada = new DecimalFormat(".##");
+        DecimalFormat mediaArredondada = new DecimalFormat(".##"); // 2 casas decimais
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
 
@@ -287,17 +330,20 @@ public class CentroMedico extends CentroMedicoPOO {
         nota = entradaDados.nextDouble();
 
         medico.setNumAvaliacoes(medico.getNumAvaliacoes() + 1); // incrementa número de avaliações feitas
-        medico.setSomaNotas(medico.getSomaNotas() + nota); // soma o total da nota
-
+        medico.setSomaNotas(medico.getSomaNotas() + nota); // soma o total das notas
 
         media = calculaMedia(medico.getSomaNotas(), medico.getNumAvaliacoes()); // re-calcula a média
         System.out.println("A média calculada: " + mediaArredondada.format(media));
 
         medico.setAvaliacaoMedia(media);
 
-        return;
+        // return;
 
     }
+
+    /**
+     * Ordena uma lista de médicos pela sua classificação média e dá o seu output
+     */
 
     public static void consultarClassificacoesOrdenadas() {
 
@@ -311,6 +357,11 @@ public class CentroMedico extends CentroMedicoPOO {
     }
 
     // public static void avancaUmDia() { }
+
+    /**
+     * Lê 3 ficheiros com informação de utentes, médicos e consultas, respetivamente, 1 a 1.
+     * Em cada leitura, toda a informação é escrita numa lista adequada a quem diz a respeito.
+     */
 
     public static void insereDadosFicheirosTexto() {
 
@@ -326,21 +377,22 @@ public class CentroMedico extends CentroMedicoPOO {
             BufferedReader bRMedicos = new BufferedReader(inStreamMedicos);
             // BufferedReader bRConsultas = new BufferedReader(inStreamConsultas);
 
+            /////////////////// Ficheiro Utentes ///////////////////
+
             String leituraUtenteLinha = bRUtentes.readLine();
 
-            // Scanner entradaDados = new Scanner(System.in,"Cp1252");
-
             while (leituraUtenteLinha != null) {
-                // ADICIONA O QUE ESTÁ NO FICHEIRO ÀS LISTAS
 
-                String[] campos = leituraUtenteLinha.split(",");
-
+                String[] campos = leituraUtenteLinha.split(","); // delimitador
                 leituraUtenteLinha = bRUtentes.readLine();
 
                 String nome = campos[0];
                 int idade = Integer.parseInt(campos[1]);
-
                 String temSeguro = campos[2];
+
+                /* Lê a letra atribuída ao seguro e substitui por true ou
+                 * false, dependendo da letra */
+
                 boolean temSeguroBool = false;
 
                 if (temSeguro.equals("S") || temSeguro.equals("s")) {
@@ -353,6 +405,9 @@ public class CentroMedico extends CentroMedicoPOO {
                     temSeguroBool = false;
                 }
 
+                /* Esta incrementação diz-nos que um novo utente vai ser adicionado
+                ao centro médico e este contador vai servir de número de utente */
+
                 int numeroUtente;
 
                 contadorInstanciasNumeroUtente++;
@@ -360,7 +415,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
                 Utente novoUtenteDoFicheiro = new Utente(nome, idade, numeroUtente, temSeguroBool);
 
-                utentes.add(novoUtenteDoFicheiro);
+                utentes.add(novoUtenteDoFicheiro);  // Um novo utente foi adicionado
 
             }
 
@@ -370,18 +425,18 @@ public class CentroMedico extends CentroMedicoPOO {
 
             String leituraMedicoLinha = bRMedicos.readLine();
 
-            // Scanner entradaDados = new Scanner(System.in,"Cp1252");
-
             while (leituraMedicoLinha != null) {
-                // ADICIONA O QUE ESTÁ NO FICHEIRO ÀS LISTAS
 
-                String[] campos = leituraMedicoLinha.split(",");
-
+                String[] campos = leituraMedicoLinha.split(","); // delimitador
                 leituraMedicoLinha = bRMedicos.readLine();
 
                 String nome = campos[0];
                 int idade = Integer.parseInt(campos[1]);
                 String especialidade = campos[2];
+
+                /* Esta incrementação diz-nos que um novo médico vai ser adicionado
+                ao centro médico e este contador vai servir de número de médico */
+
                 int numeroMedico;
 
                 contadorInstanciasNumeroMedico++;
@@ -389,11 +444,11 @@ public class CentroMedico extends CentroMedicoPOO {
 
                 Medico novoMedicoDoFicheiro = new Medico(nome, idade, numeroMedico, especialidade);
 
-                medicos.add(novoMedicoDoFicheiro);
+                medicos.add(novoMedicoDoFicheiro);   // médico foi adicionado
 
             }
 
-            bRUtentes.close();
+            bRMedicos.close();
 
         }
 
@@ -413,12 +468,18 @@ public class CentroMedico extends CentroMedicoPOO {
     ///////////                               ///////////
     /////////////////////////////////////////////////////
 
+    /**
+     * Menu principal da aplicação.
+     */
+
     public static void menuPrincipal() {
 
         boolean sair = true;
 
-        Medico medicoAvaliado = new Medico("Ana", 32, 102346,"Urologia"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
-        Medico medicoAvaliadoDois = new Medico("Bruno", 47, 103469, "Pediatra"); // APENAS PARA DEBUGGING DA AVALIAÇÃO DO MÉDICO
+        //////////////////////////////////////////////////////////////
+
+        Medico medicoAvaliado = new Medico("Ana", 32, 102346,"Urologia");
+        Medico medicoAvaliadoDois = new Medico("Bruno", 47, 103469, "Pediatra");
 
         medicos.add(medicoAvaliado);
         medicos.add(medicoAvaliadoDois);
@@ -429,19 +490,19 @@ public class CentroMedico extends CentroMedicoPOO {
         utentes.add(utenteConsulta);
         utentes.add(utenteConsultaDois);
 
-        // Os indivíduos acima são só para fins de teste.
+        // Os indivíduos acima são só para fins de teste. //
 
         do {
 
-            System.out.println("1 - Registar um novo utente\n" // adicionarUtente
-                    + "2 - Registar um novo médico\n" // adicionarMedico
-                    + "3 - Realizar uma nova consulta de diagnóstico\n" // ?
-                    + "4 - Realizar uma nova consulta de resultados\n" // ?
-                    + "5 - Listar utentes\n" // menuListarUtentes
-                    + "6 - Listar médicos\n" // menuListarMedicos
-                    + "7 - Valor total que o centro médico já recebeu dos utentes\n" // ?
-                    + "8 - Número de consultas que o centro médico já realizou\n" // ?
-                    + "9 - Sair do programa\n" // ?
+            System.out.println("1 - Registar um novo utente\n"
+                    + "2 - Registar um novo médico\n"
+                    + "3 - Realizar uma nova consulta de diagnóstico\n"
+                    + "4 - Realizar uma nova consulta de resultados\n"
+                    + "5 - Listar utentes\n"
+                    + "6 - Listar médicos\n"
+                    + "7 - Valor total que o centro médico já recebeu dos utentes\n"
+                    + "8 - Número de consultas que o centro médico já realizou\n"
+                    + "9 - Sair do programa\n"
                     + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n"
                     + "11 - Avançar um dia\n"
                     + "12 - !!! DEBUGGING !!! - Ler o ficheiro com dados dos utentes\n");
@@ -498,6 +559,10 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    /**
+     * Menu de listagem de utentes.
+     */
+
     public static void menuListarUtentes() {
 
         boolean sair = true;
@@ -535,6 +600,10 @@ public class CentroMedico extends CentroMedicoPOO {
         } while(sair);
 
     }
+
+    /**
+     * Menu de listagem de médicos
+     */
 
     public static void menuListarMedicos() {
 
@@ -582,6 +651,11 @@ public class CentroMedico extends CentroMedicoPOO {
     ///////////                               ///////////
     /////////////////////////////////////////////////////
 
+    /**
+     * Listagem de todos os utentes no centro médico com o seu número de utente,
+     * nome, idade e se tem ou não seguro.
+     */
+
     public static void listarInfoUtentes() {
 
         for(int i = 0; i < utentes.size(); i++) {
@@ -601,23 +675,11 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void listarInfoMedicos() {
-
-        for(int i = 0; i < medicos.size(); i++) {
-
-            System.out.println("////////////////////////////////////");
-
-            System.out.println("NÚMERO DE MÉDICO: " + medicos.get(i).getNumeroMedico());
-            System.out.println("Nome: " + medicos.get(i).getNome());
-            System.out.println("Idade: " + medicos.get(i).getIdade());
-            System.out.println("Especialidade: " + medicos.get(i).getEspecialidade());
-            System.out.println("Avaliação média: " + medicos.get(i).getAvaliacaoMedia());
-
-            System.out.println("////////////////////////////////////");
-
-        }
-
-    }
+    /**
+     * Listagem de médicos a trabalhar no centro médico com o seu número de médico,
+     * nome, idade, especialidade e avaliação média
+     * @param listaFiltrada lista que contém um dado número de médicos, pode ter (ou não) passado por um filtro previamente
+     */
 
     public static void listarInfoMedicos(List<Medico> listaFiltrada) {
 
@@ -636,20 +698,5 @@ public class CentroMedico extends CentroMedicoPOO {
         }
 
     }
-
-//    public static void listarInfoMedicosFiltrados(List<Medico> listaFiltrada) {
-//
-//        for(int i = 0; i < listaFiltrada.size(); i++) {
-//
-//            System.out.println("NÚMERO DE MÉDICO: " + listaFiltrada.get(i).getNumeroMedico());
-//            System.out.println("Nome: " + listaFiltrada.get(i).getNome());
-//            System.out.println("Idade: " + listaFiltrada.get(i).getIdade());
-//            System.out.println("Especialidade: " + listaFiltrada.get(i).getEspecialidade());
-//
-//            System.out.println("////////////////////////////////////");
-//
-//        }
-//
-//    }
 
 }
