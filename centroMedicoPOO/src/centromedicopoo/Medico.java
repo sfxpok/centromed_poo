@@ -36,43 +36,103 @@ public class Medico extends Individuo {
 
     ////////////////////////// *** Getters e setters *** //////////////////////////
 
+    /**
+     * Devolve o número do médico
+     * @return número do médico
+     */
+
     public int getNumeroMedico() {
         return numeroMedico;
     }
+
+    /**
+     * Devolve a especialidade de um médico
+     * @return especialidade do médico
+     */
 
     public String getEspecialidade() {
         return especialidade;
     }
 
+    /**
+     * Devolve a avaliação média de um médico
+     * @return avaliação média de um médico
+     */
+
     public double getAvaliacaoMedia() {
         return avaliacaoMedia;
     }
+
+    /**
+     * Devolve o número de consultas que o médico vai realizar no dia atual
+     * @return número de consultas que o médico vai realizar no dia atual
+     */
 
     public int getConsultasDia() {
         return consultasDia;
     }
 
+    /**
+     * Devolve o número de avaliações que o médico recebeu
+     * @return número de avaliações que o médico recebeu
+     */
+
     public int getNumAvaliacoes() { return numAvaliacoes; }
 
+    /**
+     * Devolve a soma total de notas que o médico recebeu
+     * @return soma total de notas que o médico recebeu
+     */
+
     public double getSomaNotas() { return somaNotas; }
+
+    /**
+     * Atribui um número único ao médico
+     * @param numeroMedico número único do médico
+     */
 
     public void setNumeroMedico(int numeroMedico) {
         this.numeroMedico = numeroMedico;
     }
 
+    /**
+     * Atribui uma especialidade ao médico
+     * @param especialidade especialidade do médico
+     */
+
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
     }
+
+    /**
+     * Atribui a avaliação média ao médico
+     * @param avaliacaoMedia avaliação média do médico
+     */
 
     public void setAvaliacaoMedia(double avaliacaoMedia) {
         this.avaliacaoMedia = avaliacaoMedia;
     }
 
+    /**
+     * Atribui o número de consultas que o médico vai fazer no dia atual
+     * @param consultasDia número de consultas que o médico vai fazer no dia atual
+     */
+
     public void setConsultasDia(int consultasDia) {
         this.consultasDia = consultasDia;
     }
 
+    /**
+     * Atribui a soma total das notas que o médico recebeu
+     * @param somaNotas soma total das notas que o médico recebeu
+     */
+
     public void setSomaNotas(double somaNotas) { this.somaNotas = somaNotas; }
+
+    /**
+     * Atribui o número de avaliações que o médico recebeu
+     * @param numAvaliacoes número de avaliações que o médico recebeu
+     */
 
     public void setNumAvaliacoes(int numAvaliacoes) { this.numAvaliacoes = numAvaliacoes; }
 
