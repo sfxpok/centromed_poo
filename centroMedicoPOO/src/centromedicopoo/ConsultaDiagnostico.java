@@ -66,7 +66,7 @@ public class ConsultaDiagnostico {
     public boolean verificaData(String date)
     {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/aaaa");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 
         /* declarar e inicializar variável testeData, esta variável vai conter
          * o valor da string convertida */

@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+
 import java.text.DecimalFormat;
 
 import java.io.*;
@@ -24,6 +25,10 @@ public class CentroMedico extends CentroMedicoPOO {
 
 
     // private static Utente numberlist;
+
+    public static List<Utente> getUtentes(){
+        return utentes;
+    }
 
     /**
      * Adiciona um utente à lista de utentes do centro médico
@@ -650,7 +655,8 @@ public class CentroMedico extends CentroMedicoPOO {
 
     public static void listarInfoUtentes() {
 
-        if (utentes.isEmpty()) {
+        System.out.println("Esta lista tem: " + getUtentes());
+       /* if (utentes.isEmpty()) {
             System.out.println("Não existem utentes.");
         }
 
@@ -667,7 +673,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
             System.out.println("////////////////////////////////////");
 
-        }
+        }*/
 
     }
 
