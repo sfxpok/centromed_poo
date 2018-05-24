@@ -1,96 +1,121 @@
 package centromedicopoo;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Consulta {
-
-    // private Utente utenteTesteConsulta;
-    // private Medico medicoTesteConsulta;
-    private int dia;
-    private boolean flagDiagnostico;
-    private boolean flagResultados;
-
+    
     private int numeroUtente;
     private int numeroMedico;
-
-//    public Consulta(Utente utenteTesteConsulta, Medico medicoTesteConsulta, int dia, boolean flagDiagnostico, boolean flagResultados) {
-//        this.utenteTesteConsulta = utenteTesteConsulta;
-//        this.medicoTesteConsulta = medicoTesteConsulta;
-//        this.dia = dia;
-//        this.flagDiagnostico = flagDiagnostico;
-//        this.flagResultados = flagResultados;
-//    }
+    private String data;
 
     ////////////////////////// *** Construtores *** //////////////////////////
 
-    public Consulta(int numeroUtente, int numeroMedico, int dia, boolean flagDiagnostico, boolean flagResultados) {
+    public Consulta(int numeroUtente, int numeroMedico, String data) {
         this.numeroUtente = numeroUtente;
         this.numeroMedico = numeroMedico;
-        this.dia = dia;
-        this.flagDiagnostico = flagDiagnostico;
-        this.flagResultados = flagResultados;
+        this.data = data;
+        //numeroConsulta++;
     }
-
-    public Consulta() {
-
+    public Consulta () {
+        
     }
 
     ////////////////////////// *** Getters e setters *** //////////////////////////
 
-    public int getNumeroUtente() {
+    public int getNumeroUtente(){
         return numeroUtente;
     }
 
-    public int getNumeroMedico() {
+    public int getNumeroMedico(){
         return numeroMedico;
     }
 
-//    public Utente getUtenteTesteConsulta() {
-//        return utenteTesteConsulta;
-//    }
-//
-//    public Medico getMedicoTesteConsulta() {
-//        return medicoTesteConsulta;
-//    }
-
-    public int getDia() {
-        return dia;
-    }
-
-    public boolean getFlagDiagnostico() {
-        return flagDiagnostico;
-    }
-
-    public boolean getFlagResultado() {
-        return flagResultados;
-    }
-
-    public void setNumeroUtente(int numeroUtente) {
+    public void setNumeroUtente(int numeroUtente){
         this.numeroUtente = numeroUtente;
     }
 
-    public void setNumeroMedico(int numeroMedico) {
+    public void setNumeroMedico(int numeroMedico){
         this.numeroMedico = numeroMedico;
     }
-
-//    public void setUtenteTesteConsulta(Utente utenteTesteConsulta) {
-//        this.utenteTesteConsulta = utenteTesteConsulta;
-//    }
-//
-//    public void setMedicoTesteConsulta(Medico medicoTesteConsulta) {
-//        this.medicoTesteConsulta = medicoTesteConsulta;
-//    }
-
-    public void setDia(int dia) {
-        this.dia = dia;
+    
+    //metodo que devolve a data de cada consulta
+    public String getData(){
+        return data;
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean solicitaExame(){
+        return true;
+    } // caso o médico solicite um exame
 
-    public void setFlagDiagnostico(boolean flagDiagnostico) {
-        this.flagDiagnostico = flagDiagnostico;
+    /*public void addUtente(Utente utente){
+        utentes.add(utente);
+    } // adicionar um utente à consulta
+
+    public void addMedico(Medico medico){
+        medicos.add(medico);
+    } // adicionar um médico à consulta*/
+
+    public void setDataConsulta(String data){
+        this.data = data;
+    } // adicionar uma data à consulta
+
+    /* O método seguinte recebe uma data (dd/mm/aaaa) em formato de string
+     * e devolve no tipo de dado SimpleDateFormat que corresponde a uma data */
+    public boolean verificaData(String data)
+    {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
+        /* declarar e inicializar variável testeData, esta variável vai conter
+         * o valor da string convertida */
+
+        Date testeData = null;
+
+        // tentar fazer o parsing da string para o formato data
+        try
+        {
+            testeData = sdf.parse(data);
+        }
+        // se o formato da string disponibilizada nao for equivalente ao formato declarado em SimpleDateFormat() teremos uma excepçao
+        catch (ParseException e)
+        {
+            String mensagemErro = "A data inserida está num formato inválido";
+            return false;
+        }
+        if (!sdf.format(testeData).equals(data))
+        {
+            String mensagemErro = "A data inserida é inválida";
+            return false;
+        }
+        // se chegarmos até aqui nas verificações iremos assumir que o formato da data está correcta
+        return true;
     }
-
-    public void setFlagResultados(boolean flagResultados) {
-        this.flagResultados = flagResultados;
+    
+    //parsing do input string para data
+    public Date getDate(String date) throws ParseException{
+        SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+        return df.parse(date);
     }
-
-    // public String toString() { }
-
+    
+    //diferença entre os dias introduzidos
+    public long daysBetween(Date one, Date two){
+        long difference = ( one.getTime() - two.getTime() ) / 86400000;
+        return Math.abs(difference);
+    }
+    
+    //metodo toString
+    public String toString(){
+        String info;
+        info = "Numero utente: " + numeroUtente;
+        info += " Numero medico: " + numeroMedico;
+        info += " Data: " + data;
+        return info;
+    }
+    
 }

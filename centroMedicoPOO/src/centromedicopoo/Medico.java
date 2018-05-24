@@ -9,8 +9,11 @@ public class Medico extends Individuo {
 
     private int numAvaliacoes;
     private double somaNotas;
+    
+    private int consultas_dia;
+    private final int max_consultas_dia = 5;
 
-    static String[] especialidades = {"Pediatra","Cardiologia","Neurologia","Radiologia","Urologia"};
+    static String[] especialidades = {"Pediatria","Cardiologia","Neurologia","Radiologia","Urologia"};
 
     ////////////////////////// *** Construtores *** //////////////////////////
 
@@ -83,7 +86,7 @@ public class Medico extends Individuo {
      * Devolve a soma total de notas que o médico recebeu
      * @return soma total de notas que o médico recebeu
      */
-
+    
     public double getSomaNotas() { return somaNotas; }
 
     /**
@@ -133,9 +136,25 @@ public class Medico extends Individuo {
      * Atribui o número de avaliações que o médico recebeu
      * @param numAvaliacoes número de avaliações que o médico recebeu
      */
+    
+    //metodo que devolve true caso o medico queira solicitar um exame
+   /* public boolean solicitaExame(String realizar_exame){
+        if(realizar_exame == "S" || realizar_exame == "s"){
+            return true;
+        }else{
+            return false;
+        }
+    }*/
 
     public void setNumAvaliacoes(int numAvaliacoes) { this.numAvaliacoes = numAvaliacoes; }
-
-    // public String toString() { }
-
+    
+    //metodo toString
+    public String toString() {
+        String info;
+        info = super.toString() + " ";
+        info += "Numero: " + numeroMedico + " || ";
+        info += "Especialidade: " + especialidade;
+        return info;
+    }
+        
 }

@@ -10,19 +10,19 @@ public class Utente extends Individuo {
     private double descontoAcumulado;
     private double dinheiroGasto;
     private boolean temSeguro;
-
-    private List<Consulta> testeConsultasLista = new ArrayList<>();
-
+    private String data;
+    
+    private final int consultas_semana = 4;
+   
     ////////////////////////// *** Construtores *** //////////////////////////
 
-    public Utente(String nome, int idade, int numeroUtente, int consultasSemana, double descontoAcumulado, double dinheiroGasto, boolean temSeguro, List<Consulta> testeConsultasLista) {
+    public Utente(String nome, int idade, int numeroUtente, int consultasSemana, double descontoAcumulado, double dinheiroGasto, boolean temSeguro) {
         super(nome, idade);
         this.numeroUtente = numeroUtente;
         this.consultasSemana = consultasSemana;
         this.descontoAcumulado = descontoAcumulado;
         this.dinheiroGasto = dinheiroGasto;
         this.temSeguro = temSeguro;
-        this.testeConsultasLista = testeConsultasLista;
     }
     
     public Utente() {
@@ -40,11 +40,12 @@ public class Utente extends Individuo {
         this.temSeguro = temSeguro;
         this.descontoAcumulado = descontoAcumulado;
     }
-
-    public Utente(int numeroUtente) {
+    
+    public Utente(String nome, int numeroUtente, String data){
+        super(nome);
         this.numeroUtente = numeroUtente;
-    }
-
+        this.data = data;
+    }     
     ////////////////////////// *** Getters e setters *** //////////////////////////
 
     /**
@@ -93,9 +94,9 @@ public class Utente extends Individuo {
         return temSeguro;
     }
 
-    public List<Consulta> getTesteConsultasLista() {
+    /*public List<Consulta> getTesteConsultasLista() {
         return new ArrayList<Consulta>(this.testeConsultasLista);
-    }
+    }*/
 
     /**
      * Atribui um número único ao utente
@@ -142,14 +143,12 @@ public class Utente extends Individuo {
         this.temSeguro = temSeguro;
     }
 
-//    public void setTesteConsultasLista(int numeroUtente) {
-//        this.numeroUtente = numeroUtente;
-//    }
-
-    public void setTesteConsultasLista(List<Consulta> list) {
-        this.testeConsultasLista = new ArrayList<Consulta>(list);
+    public String toString() { 
+        String info;
+        info = super.toString();
+        info += "Numero: " + numeroUtente + " || ";
+        info += "Seguro: " + temSeguro + "\n";
+        return info;
     }
-
-    // public String toString() { }
 
 }

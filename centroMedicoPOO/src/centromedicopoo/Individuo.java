@@ -59,6 +59,12 @@ public class Individuo {
         this.idade = idade;
     }
 
-    // public String toString() { }
+    //metodo toString
+    public String toString() {
+        String info;
+        info = "Nome: " + nome + " || ";
+        info += "Idade: " + idade + " || ";
+        return info;
+    } 
     
 }

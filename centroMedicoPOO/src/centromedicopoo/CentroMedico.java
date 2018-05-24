@@ -1,10 +1,12 @@
 package centromedicopoo;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Date;
 
 
 import java.text.DecimalFormat;
@@ -12,9 +14,14 @@ import java.text.DecimalFormat;
 import java.io.*;
 
 public class CentroMedico extends CentroMedicoPOO {
+    private String nome;
+    private int ano_fundacao;
+    private static int consultas_marcadas = 0;
+    private static final int limite_consultas = 12;
 
-    private static List<Utente> utentes = new ArrayList<>();
-    private static List<Medico> medicos = new ArrayList<>();
+    private static ArrayList<Utente> utentes;
+    private static ArrayList<Medico> medicos;
+    private static ArrayList<Consulta> consultas;
 
     private static int contadorInstanciasNumeroUtente = 0;
     private static int contadorInstanciasNumeroMedico = 0;
@@ -23,13 +30,61 @@ public class CentroMedico extends CentroMedicoPOO {
     private static final String FICHEIRO_MEDICOS = "medicos.txt";
     private static final String FICHEIRO_CONSULTAS = "consultas.txt";
 
-
-    // private static Utente numberlist;
-
-    public static List<Utente> getUtentes(){
+    public CentroMedico(){
+        nome = "Centro Medico da UMA";
+        ano_fundacao = 1980;
+        utentes = new ArrayList<Utente>();
+        medicos = new ArrayList<Medico>();
+        consultas = new ArrayList<Consulta>();
+    }
+    
+    //metodo para adicionar utentes à lista
+    public static void addUtente(Utente utente){
+        utentes.add(utente);
+    }
+    //metodo para devolve a lista de utentes
+    public static ArrayList<Utente> getUtentes(){
         return utentes;
     }
-
+    //metodo para adicionar medicos à lista
+    public static void addMedico(Medico medico){
+        medicos.add(medico);
+    }
+     //metodo para devolve a lista de medicos
+    public static ArrayList<Medico> getMedicos(){
+        return medicos;
+    }
+    //metodo para adicionar consultas à lista
+    public static void addConsulta(ConsultaDiagnostico consulta){
+        consultas.add(consulta);
+    }
+     //metodo para devolver a lista de consultas
+    public static ArrayList<Consulta> getConsultas(){
+        return consultas;
+    }
+    
+    //metodo para verificar se o medico atingiu o limite de consultas para determinado dia
+    public static boolean podeMarcarConsulta(String data, int numeroMedico){
+        for(int i = 0; i < consultas.size(); i++){
+            if( (consultas.get(i).getData().equals(data)) && (consultas.get(i).getNumeroMedico() == numeroMedico) ){
+                consultas_marcadas++;
+            } 
+        }
+        if(consultas_marcadas == limite_consultas){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    //metodo para devolver a lista de consultas com determinada data e numero de medico
+    /*public static ArrayList<Consulta> getConsultas(){
+        
+    }*/
+    
+    
+    
+    //metodo para adicionar 
+    
     /**
      * Adiciona um utente à lista de utentes do centro médico
      */
@@ -48,10 +103,10 @@ public class CentroMedico extends CentroMedicoPOO {
 
         Utente utente = new Utente();
 
-        System.out.print("Nome: " + "\n");
+        System.out.print("Nome: ");
         nome = entradaDados.nextLine();
         
-        System.out.print("Idade: " + "\n");
+        System.out.print("Idade: ");
         idade = entradaDados.nextInt();
 
         System.out.print("O utente tem seguro? S/N: " + "\n");
@@ -69,7 +124,7 @@ public class CentroMedico extends CentroMedicoPOO {
         if (temSeguro.equals("S") || temSeguro.equals("s")) {
             utente.setTemSeguro(true);
             // utente.setDescontoAcumulado(0.40); // EDITAR ISTO
-            System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO"); // APENAS PARA TESTES
+            System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO" + "\n"); // APENAS PARA TESTES
             // ATRIBUI DESCONTO
         }
         else if (temSeguro.equals("N") || temSeguro.equals("n")) {
@@ -128,13 +183,13 @@ public class CentroMedico extends CentroMedicoPOO {
 
         Medico medico = new Medico();
 
-        System.out.println("Nome: " + "\n");
+        System.out.print("Nome: ");
         nome = entradaDados.nextLine();
 
-        System.out.println("Idade: " + "\n");
+        System.out.print("Idade: ");
         idade = entradaDados.nextInt();
 
-        System.out.println("Especialidade: " + "\n");
+        System.out.print("Especialidade: ");
 
         /* Tem que haver 2 linhas que fazem a mesma tarefa porque
         caso contrário não funciona */
@@ -185,76 +240,110 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
-    public static void adicionarConsulta() {
+    public static void adicionarConsulta() throws ParseException {
         //para facilitar os testes, criacao de objectos utente e medico
         Utente utente1 = new Utente("Joao", 28, 33, true);
         Medico medico1 = new Medico("Luis", 99, 22, "Pediatria");
-
+        
         int numeroUtente;
         int numeroMedico;
-        String data;
+        String data_diagnostico, data_resultado;
+        String consulta_resultado;
+        String exame;
+        long diferenca_entre_dias;
 
         boolean numeroUtenteCorrecto = false;
         boolean numeroMedicoCorrecto = false;
 
         Scanner entradaDados = new Scanner(System.in, "Cp1252");
-        ConsultaDiagnostico novaConsultaDiag = new ConsultaDiagnostico();
+        
+        //declaração de variáveis do tipo consulta, onde vamos associar instâncias de consultaDiagnostico e consultaResultado (note-se o polimorfismo)
+        Consulta consultaDiagnostico, consultaResultado;
+        consultaDiagnostico = new ConsultaDiagnostico();
+        consultaResultado = new ConsultaResultado();
 
-        System.out.println("Insira o numero do utente que pretende adicionar à consulta");
+        System.out.print("Insira o numero do utente que pretende adicionar à consulta: ");
         numeroUtente = entradaDados.nextInt();
-
+       
         for(int i = 0; i < utentes.size(); i++){
             if(utentes.get(i).getNumeroUtente() == numeroUtente){
                 numeroUtenteCorrecto = true;
-                System.out.println("O numero esta correcto");
+                break;
             }else{
                 numeroUtenteCorrecto = false;
-                System.out.println("O numero esta errado");
             }
         }
+        if(numeroUtenteCorrecto){
+            System.out.println("O numero esta correcto");
+        }else{
+            System.out.println("O numero esta errado");
+        }
 
-        System.out.println("Insira o numero do medico para este utente");
+        System.out.print("Insira o numero do medico para este utente: ");
         numeroMedico = entradaDados.nextInt();
-
+        
+        //percore a lista dos medicos e verifica se o numeroMedico de input existe
         for(int i = 0; i < medicos.size(); i++){
             if(medicos.get(i).getNumeroMedico() == numeroMedico) {
                 numeroMedicoCorrecto = true;
-                System.out.println("O numero esta correcto");
+                break;
             }else{
                 numeroMedicoCorrecto = false;
-                System.out.println("O numero esta errado");
             }
         }
-
-
+        //para só fazer display uma vez
+        if(numeroMedicoCorrecto){
+            System.out.println("O numero esta correcto.");
+        }else{
+            System.out.println("O numero esta errado.");
+        }
+        
+        //verificar se o limite de consultas por dia para determinado médico já foi atingido
+        //if(getConsultas())
+        
         //String data = entradaDados.next();
-        do{
-            System.out.println("Insira a data para esta consulta, Formato: dd/MM/yyyy");
-            data= entradaDados.next();
-        } while( !novaConsultaDiag.verificaData(data) );
-
-        if( novaConsultaDiag.verificaData(data) ){
-            novaConsultaDiag.setDataConsulta(data);
-            System.out.println("A consulta foi marcada com sucesso.");
+        System.out.println("Insira a data para esta consulta, Formato: dd/MM/aaaa");
+        data_diagnostico = entradaDados.next();
+        Date data_diag = consultaDiagnostico.getDate(data_diagnostico); 
+            
+        if( consultaDiagnostico.verificaData(data_diagnostico) && numeroMedicoCorrecto && numeroUtenteCorrecto ){
+            consultaDiagnostico.setDataConsulta(data_diagnostico);
+            consultaDiagnostico.setNumeroUtente(numeroUtente);
+            consultaDiagnostico.setNumeroMedico(numeroMedico);     
+            if( podeMarcarConsulta(data_diagnostico,numeroMedico) ){
+                consultas.add(consultaDiagnostico);
+                System.out.println("A consulta foi marcada com sucesso. " + "Numero de Utente: " + numeroUtente + " Numero do Medico: " + numeroMedico + " Data: " + data_diagnostico);
+            }else{
+                System.out.println("O limite de consultas diárias para o médico numero: " + numeroMedico + " foi atingido");     
+            }
+            System.out.print("Pretende solicitar exame? ");
+            exame = entradaDados.next();
+            if(exame.equals("s") || exame.equals("S")){
+                System.out.println("O exame estará pronto dentro de 7 dias");
+            }else{
+                return;
+            }
+            System.out.print("Insira a data pretendida para a consulta de resultado: ");
+            data_resultado = entradaDados.next();
+            Date data_resul = consultaDiagnostico.getDate(data_resultado);
+            diferenca_entre_dias = consultaDiagnostico.daysBetween(data_resul,data_diag);
+            if( consultaResultado.verificaData(data_resultado) ){
+                    if( diferenca_entre_dias >= 8 ){
+                        consultaResultado.setDataConsulta(data_resultado);
+                        consultaResultado.setNumeroMedico(numeroMedico);
+                        consultaResultado.setNumeroUtente(numeroUtente);
+                        consultas.add(consultaResultado);
+                        System.out.println("A consulta de resultados foi marcada para o dia: " + data_resultado);
+                    }else{
+                        System.out.println("A consulta de resultados só poderá ser marcada 8 dias após a consulta de diagnóstico.");
+                    }
+            }else{
+                System.out.println("A data é inválida");
+            }
         }
-        else{
-            System.out.println("A data e invalida");
-        }
-
-
-        /**
-         if( novaConsultaDiag.isValidDate(data) ){
-         System.out.println("A data introduzida é valida");
-         }else{
-         System.out.println("A data introduzida é inválida");
-         }**/
-
     }
-
-    // public static void listarPagamentosUtentes() { }
-
-    // public static int numeroConsultasFeitas() { }
-
+    
+    
     /**
      * Cria uma lista filtrada de médicos com uma
      * especialidade inserida pelo utilizador
@@ -469,23 +558,23 @@ public class CentroMedico extends CentroMedicoPOO {
      * Menu principal da aplicação.
      */
 
-    public static void menuPrincipal() {
+    public static void menuPrincipal() throws ParseException {
 
         boolean sair = true;
 
         //////////////////////////////////////////////////////////////
-
+        CentroMedico centroTeste = new CentroMedico();
         Medico medicoAvaliado = new Medico("Ana", 32, 102346,"Urologia");
-        Medico medicoAvaliadoDois = new Medico("Bruno", 47, 103469, "Pediatra");
-
+        Medico medicoAvaliadoDois = new Medico("Bruno", 47, 103469, "Pediatria");
+        
         medicos.add(medicoAvaliado);
         medicos.add(medicoAvaliadoDois);
 
-        Utente utenteConsulta = new Utente("Carlota",46,39123,0,0,0,true,null);
-        Utente utenteConsultaDois = new Utente("Carlos",20,39122,0,0,0,false,null);
-
-        utentes.add(utenteConsulta);
-        utentes.add(utenteConsultaDois);
+        //Utente utenteConsulta = new Utente("Carlota",46,39123,0,0,true,null);
+        //Utente utenteConsultaDois = new Utente("Carlos",20,39122,0,0,false,null);
+ 
+        //utentes.add(utenteConsulta);
+        //utentes.add(utenteConsultaDois);
 
         // Os indivíduos acima são só para fins de teste. //
 
@@ -502,8 +591,8 @@ public class CentroMedico extends CentroMedicoPOO {
                     + "9 - Sair do programa\n"
                     + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n"
                     + "11 - Avançar um dia\n"
-                    + "12 - !!! DEBUGGING !!! - Ler o ficheiro com dados dos utentes\n");
-
+                    + "12 - !!! DEBUGGING !!! - Ler o ficheiro com dados dos utentes\n"
+                    + "13 - DEBUGGING!!! - Listar todas as consultas marcadas até a data\n");
             Scanner entradaDados = new Scanner(System.in, "Cp1252");
             int op;
 
@@ -547,6 +636,9 @@ public class CentroMedico extends CentroMedicoPOO {
                     break;
                 case 12:
                     insereDadosFicheirosTexto();
+                    break;
+                case 13:
+                    listarConsultasMarcadas();
                     break;
                 default:
                     System.out.println("\nValor inválido\n");
@@ -654,27 +746,7 @@ public class CentroMedico extends CentroMedicoPOO {
      */
 
     public static void listarInfoUtentes() {
-
-        System.out.println("Esta lista tem: " + getUtentes());
-       /* if (utentes.isEmpty()) {
-            System.out.println("Não existem utentes.");
-        }
-
-        for(int i = 0; i < utentes.size(); i++) {
-
-            System.out.println("NÚMERO DE UTENTE: " + utentes.get(i).getNumeroUtente());
-            System.out.println("Nome: " + utentes.get(i).getNome());
-            System.out.println("Idade: " + utentes.get(i).getIdade());
-
-            if (utentes.get(i).getTemSeguro())
-                System.out.println("O utente tem seguro.");
-            else
-                System.out.println("O utente não tem seguro.");
-
-            System.out.println("////////////////////////////////////");
-
-        }*/
-
+        System.out.println("Este centro medico tem os seguintes utentes: " + "\n" + getUtentes() );
     }
 
     /**
@@ -704,5 +776,9 @@ public class CentroMedico extends CentroMedicoPOO {
         }
 
     }
+    
+    public static void listarConsultasMarcadas(){
+        System.out.println("Este centro medico tem as seguintes consultas marcadas: "+"\n"+getConsultas()+"\n"+ "Numero de consultas: "+getConsultas().size()+"\n");
+    } 
 
 }
