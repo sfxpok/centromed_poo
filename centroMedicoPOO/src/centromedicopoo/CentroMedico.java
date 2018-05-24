@@ -649,6 +649,7 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("O numero esta correcto"); // ajustar isto
         }else{
             System.out.println("O numero esta errado");
+            return;
         }
 
         System.out.println("Quanto crédito deseja depositar?");
@@ -686,6 +687,7 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("O numero esta correcto"); // ajustar isto
         }else{
             System.out.println("O numero esta errado");
+            return;
         }
 
         System.out.println("Quanto crédito deseja retirar?");
