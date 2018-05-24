@@ -457,11 +457,13 @@ public class CentroMedico extends CentroMedicoPOO {
 
             FileReader inStreamUtentes = new FileReader(FICHEIRO_UTENTES);
             FileReader inStreamMedicos = new FileReader(FICHEIRO_MEDICOS);
-            // FileReader inStreamConsultas = new FileReader(FICHEIRO_CONSULTAS);
+            FileReader inStreamConsultas = new FileReader(FICHEIRO_CONSULTAS);
+            FileReader inStreamAdicionarConsultas = new FileReader(FICHEIRO_CONSULTAS);
 
             BufferedReader bRUtentes = new BufferedReader(inStreamUtentes);
             BufferedReader bRMedicos = new BufferedReader(inStreamMedicos);
-            // BufferedReader bRConsultas = new BufferedReader(inStreamConsultas);
+            BufferedReader bRConsultas = new BufferedReader(inStreamConsultas);
+            BufferedReader bRAdicionarConsultas = new BufferedReader(inStreamAdicionarConsultas);
 
             /////////////////// Ficheiro Utentes ///////////////////
 
@@ -535,6 +537,44 @@ public class CentroMedico extends CentroMedicoPOO {
             }
 
             bRMedicos.close();
+
+            /////////////////// Ficheiro Consultas ///////////////////
+
+            int numeroLinhasFicheiro = 0;
+            String leituraNumeroDeLinhas = bRConsultas.readLine();
+
+
+            while(leituraNumeroDeLinhas != null) {
+                leituraNumeroDeLinhas = bRConsultas.readLine();
+                numeroLinhasFicheiro++;
+            }
+
+            consultas_marcadas = numeroLinhasFicheiro + consultas_marcadas;
+            bRConsultas.close();
+
+            String leituraConsultaLinha = bRAdicionarConsultas.readLine();
+
+            while (leituraConsultaLinha != null) {
+
+                String[] campos = leituraConsultaLinha.split(","); // delimitador
+                leituraConsultaLinha = bRAdicionarConsultas.readLine();
+
+                int numUtente = Integer.parseInt(campos[0]);
+                int numMedico = Integer.parseInt(campos[1]);
+                String dataDiag = campos[2];
+
+                Consulta novaConsultaDoFicheiro = new Consulta(numUtente, numMedico, dataDiag);
+
+                consultas.add(novaConsultaDoFicheiro);
+
+            }
+
+//            if (consultas_marcadas < consultasMarcadasDoFicheiro + consultas_marcadas) {
+//                System.out.println("Importação ")
+//            }
+
+
+            bRAdicionarConsultas.close();
 
         }
 
