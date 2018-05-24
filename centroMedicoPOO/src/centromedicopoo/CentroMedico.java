@@ -1,6 +1,9 @@
 package centromedicopoo;
 
+import sun.java2d.pipe.SpanShapeRenderer;
+
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.Comparator;
@@ -25,6 +28,8 @@ public class CentroMedico extends CentroMedicoPOO {
 
     private static int contadorInstanciasNumeroUtente = 0;
     private static int contadorInstanciasNumeroMedico = 0;
+
+    private static Date diaAtual = new Date();
 
     private static final String FICHEIRO_UTENTES = "utentes.txt";
     private static final String FICHEIRO_MEDICOS = "medicos.txt";
@@ -583,6 +588,126 @@ public class CentroMedico extends CentroMedicoPOO {
         }
     }
 
+    public static void menuGerirCredito() {
+
+        boolean sair = true;
+
+        do {
+
+            System.out.println("----- Gestão de crédito -----\n"
+                    + "1 - Depositar crédito\n"
+                    + "2 - Retirar crédito\n"
+                    + "3 - Voltar atrás\n");
+
+            Scanner entradaDados = new Scanner(System.in, "Cp1252");
+            int op;
+
+            System.out.print("Escolha uma opção: ");
+            op = entradaDados.nextInt();
+
+            switch(op) {
+                case 1:
+                    depositarCredito();
+                    break;
+                case 2:
+                    retirarCredito();
+                    break;
+                case 3:
+                    sair = false;
+                    break;
+                default:
+                    System.out.println("\nValor inválido\n");
+            }
+
+        } while(sair);
+
+    }
+
+    public static void depositarCredito() {
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        boolean numeroUtenteCorrecto = false;
+        int numeroUtente;
+        double quantiaCredito;
+        double somaCredito;
+        Utente utenteCredito = new Utente();
+
+        System.out.println("Insira o numero de utente que quer depositar o crédito: ");
+        numeroUtente = entradaDados.nextInt();
+
+        for(int i = 0; i < utentes.size(); i++){
+            if(utentes.get(i).getNumeroUtente() == numeroUtente){
+                numeroUtenteCorrecto = true;
+                utenteCredito = utentes.get(i);
+                break;
+            }else{
+                numeroUtenteCorrecto = false;
+            }
+        }
+        if(numeroUtenteCorrecto){
+            System.out.println("O numero esta correcto"); // ajustar isto
+        }else{
+            System.out.println("O numero esta errado");
+        }
+
+        System.out.println("Quanto crédito deseja depositar?");
+        quantiaCredito = entradaDados.nextDouble();
+
+        somaCredito = quantiaCredito + utenteCredito.getCreditoCM();
+
+        utenteCredito.setCreditoCM(somaCredito);
+
+    }
+
+    public static void retirarCredito() {
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        boolean numeroUtenteCorrecto = false;
+        int numeroUtente;
+        double quantiaCredito;
+        double subtrCredito;
+        Utente utenteCredito = new Utente();
+
+        System.out.println("Insira o numero de utente que quer retirar o crédito: ");
+        numeroUtente = entradaDados.nextInt();
+
+        for(int i = 0; i < utentes.size(); i++){
+            if(utentes.get(i).getNumeroUtente() == numeroUtente){
+                numeroUtenteCorrecto = true;
+                utenteCredito = utentes.get(i);
+                break;
+            }else{
+                numeroUtenteCorrecto = false;
+            }
+        }
+        if(numeroUtenteCorrecto){
+            System.out.println("O numero esta correcto"); // ajustar isto
+        }else{
+            System.out.println("O numero esta errado");
+        }
+
+        System.out.println("Quanto crédito deseja retirar?");
+        quantiaCredito = entradaDados.nextDouble();
+
+        subtrCredito = utenteCredito.getCreditoCM() - quantiaCredito;
+
+        utenteCredito.setCreditoCM(subtrCredito);
+
+    }
+
+    public static void escolherDia() throws ParseException {
+
+        Scanner entradaDados = new Scanner(System.in,"Cp1252");
+
+        System.out.println("Introduza o dia desejado: (formato DD/mm/aaaa)");
+        String dia = entradaDados.nextLine();
+
+        diaAtual = Consulta.getDate(dia);
+
+    }
+
 
     /////////////////////////////////////////////////////
     ///////////                               ///////////
@@ -630,9 +755,10 @@ public class CentroMedico extends CentroMedicoPOO {
                     + "8 - Número de consultas que o centro médico já realizou\n"
                     + "9 - Sair do programa\n"
                     + "10 - !!! DEBUGGING !!! - Atribuir avaliação a um médico\n"
-                    + "11 - Avançar um dia\n"
+                    + "11 - Alterar o dia atual\n"
                     + "12 - !!! DEBUGGING !!! - Ler o ficheiro com dados dos utentes\n"
-                    + "13 - DEBUGGING!!! - Listar todas as consultas marcadas até a data\n");
+                    + "13 - !!! DEBUGGING !!! - Listar todas as consultas marcadas até a data\n"
+                    + "14 - Gerir crédito de um utente\n");
             Scanner entradaDados = new Scanner(System.in, "Cp1252");
             int op;
 
@@ -672,13 +798,16 @@ public class CentroMedico extends CentroMedicoPOO {
                     avaliarAlguem(medicoAvaliadoDois);
                     break;
                 case 11:
-                    // avancaUmDia();
+                    escolherDia();
                     break;
                 case 12:
                     insereDadosFicheirosTexto();
                     break;
                 case 13:
                     listarConsultasMarcadas();
+                    break;
+                case 14:
+                    menuGerirCredito();
                     break;
                 default:
                     System.out.println("\nValor inválido\n");

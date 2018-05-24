@@ -7,22 +7,28 @@ public class Utente extends Individuo {
     
     private int numeroUtente;
     private int consultasSemana;
-    private double descontoAcumulado;
+    private double descontoConsultas;
+    private double descontoExames;
     private double dinheiroGasto;
     private boolean temSeguro;
     private String data;
+    private double creditoCM;
+    private boolean utentesAngariados;
     
     private final int consultas_semana = 4;
    
     ////////////////////////// *** Construtores *** //////////////////////////
 
-    public Utente(String nome, int idade, int numeroUtente, int consultasSemana, double descontoAcumulado, double dinheiroGasto, boolean temSeguro) {
+    public Utente(String nome, int idade, int numeroUtente, int consultasSemana, double descontoConsultas, double descontoExames, double dinheiroGasto, boolean temSeguro, double creditoCM, boolean utentesAngariados) {
         super(nome, idade);
         this.numeroUtente = numeroUtente;
         this.consultasSemana = consultasSemana;
-        this.descontoAcumulado = descontoAcumulado;
+        this.descontoConsultas = descontoConsultas;
+        this.descontoExames = descontoExames;
         this.dinheiroGasto = dinheiroGasto;
         this.temSeguro = temSeguro;
+        this.creditoCM = creditoCM;
+        this.utentesAngariados = utentesAngariados;
     }
     
     public Utente() {
@@ -38,7 +44,7 @@ public class Utente extends Individuo {
     public Utente(String nome, boolean temSeguro, double descontoAcumulado) {
         super(nome);
         this.temSeguro = temSeguro;
-        this.descontoAcumulado = descontoAcumulado;
+        // this.descontoAcumulado = descontoAcumulado;
     }
     
     public Utente(String nome, int numeroUtente, String data){
@@ -71,10 +77,13 @@ public class Utente extends Individuo {
      * @return desconto que o utente tem nas consultas
      */
 
-    public double getDescontoAcumulado() {
-        return descontoAcumulado;
+    public double getDescontoConsultas() {
+        return descontoConsultas;
     }
 
+    public double getDescontoExames() {
+        return descontoExames;
+    }
 
     /**
      * Devolve o dinheiro gasto pelo utente no centro médico
@@ -92,6 +101,14 @@ public class Utente extends Individuo {
 
     public boolean getTemSeguro() {
         return temSeguro;
+    }
+
+    public double getCreditoCM() {
+        return creditoCM;
+    }
+
+    public boolean getUtentesAngariados() {
+        return utentesAngariados;
     }
 
     /*public List<Consulta> getTesteConsultasLista() {
@@ -118,11 +135,15 @@ public class Utente extends Individuo {
 
     /**
      * Atribui um desconto ao utente nas consultas
-     * @param descontoAcumulado desconto do utente nas consultas
+     * @param descontoConsultas desconto do utente nas consultas
      */
 
-    public void setDescontoAcumulado(double descontoAcumulado) {
-        this.descontoAcumulado = descontoAcumulado;
+    public void setDescontoConsultas(double descontoConsultas) {
+        this.descontoConsultas = descontoConsultas;
+    }
+
+    public void setDescontoExames(double descontoExames) {
+        this.descontoExames = descontoExames;
     }
 
     /**
@@ -143,11 +164,21 @@ public class Utente extends Individuo {
         this.temSeguro = temSeguro;
     }
 
-    public String toString() { 
+    public void setCreditoCM(double creditoCM) {
+        this.creditoCM = creditoCM;
+    }
+
+    public void setUtentesAngariados(boolean utentesAngariados) {
+        this.utentesAngariados = utentesAngariados;
+    }
+
+    public String toString() {
         String info;
         info = super.toString();
         info += "Numero: " + numeroUtente + " || ";
-        info += "Seguro: " + temSeguro + "\n";
+        info += "Seguro: " + temSeguro + "||";
+        info += "Crédito: " + creditoCM + "||";
+        info += "Angariou utentes: " + utentesAngariados + "\n";
         return info;
     }
 

@@ -11,17 +11,25 @@ public class Consulta {
     private int numeroUtente;
     private int numeroMedico;
     private String data;
+    private double custoConsulta;
 
     ////////////////////////// *** Construtores *** //////////////////////////
+
+    public Consulta(int numeroUtente, int numeroMedico, String data, double custoConsulta) {
+        this.numeroUtente = numeroUtente;
+        this.numeroMedico = numeroMedico;
+        this.data = data;
+        this.custoConsulta = custoConsulta;
+    }
+
+    public Consulta () {
+        
+    }
 
     public Consulta(int numeroUtente, int numeroMedico, String data) {
         this.numeroUtente = numeroUtente;
         this.numeroMedico = numeroMedico;
         this.data = data;
-        //numeroConsulta++;
-    }
-    public Consulta () {
-        
     }
 
     ////////////////////////// *** Getters e setters *** //////////////////////////
@@ -34,6 +42,10 @@ public class Consulta {
         return numeroMedico;
     }
 
+    public double getCustoConsulta() {
+        return custoConsulta;
+    }
+
     public void setNumeroUtente(int numeroUtente){
         this.numeroUtente = numeroUtente;
     }
@@ -41,7 +53,11 @@ public class Consulta {
     public void setNumeroMedico(int numeroMedico){
         this.numeroMedico = numeroMedico;
     }
-    
+
+    public void setCustoConsulta(double custoConsulta) {
+        this.custoConsulta = custoConsulta;
+    }
+
     //metodo que devolve a data de cada consulta
     public String getData(){
         return data;
@@ -98,7 +114,7 @@ public class Consulta {
     }
     
     //parsing do input string para data
-    public Date getDate(String date) throws ParseException{
+    public static Date getDate(String date) throws ParseException{
         SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
         return df.parse(date);
     }
