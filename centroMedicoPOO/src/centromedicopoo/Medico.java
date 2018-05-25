@@ -11,7 +11,7 @@ public class Medico extends Individuo {
     private double somaNotas;
     
     private int consultas_dia;
-    private final int max_consultas_dia = 5;
+    private final int MAX_CONSULTAS_DIA = 5;
 
     static String[] especialidades = {"Pediatria","Cardiologia","Neurologia","Radiologia","Urologia"};
 

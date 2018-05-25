@@ -14,7 +14,7 @@ public class CentroMedico extends CentroMedicoPOO {
     private String nome;
     private int ano_fundacao;
     private static int consultas_marcadas = 0;
-    private static final int limite_consultas = 12;
+    private static final int LIMITE_CONSULTAS = 12;
 
     private static ArrayList<Utente> utentes;
     private static ArrayList<Medico> medicos;
@@ -23,11 +23,14 @@ public class CentroMedico extends CentroMedicoPOO {
     private static int contadorInstanciasNumeroUtente = 0;
     private static int contadorInstanciasNumeroMedico = 0;
 
-    private static Date diaAtual = new Date();
+    private static String diaAtual = "01/01/2018";
 
     private static final String FICHEIRO_UTENTES = "utentes.txt";
     private static final String FICHEIRO_MEDICOS = "medicos.txt";
     private static final String FICHEIRO_CONSULTAS = "consultas.txt";
+
+    private static final int precoConsulta = 50;
+    private static final int precoExame = 30;
 
     public CentroMedico(){
         nome = "Centro Medico da UMA";
@@ -106,7 +109,7 @@ public class CentroMedico extends CentroMedicoPOO {
                 consultas_marcadas++;
             } 
         }
-        if(consultas_marcadas == limite_consultas){
+        if(consultas_marcadas == LIMITE_CONSULTAS){
             return false;
         }else{
             return true;
@@ -160,7 +163,7 @@ public class CentroMedico extends CentroMedicoPOO {
         if (temSeguro.equals("S") || temSeguro.equals("s")) {
             utente.setTemSeguro(true);
             // utente.setDescontoAcumulado(0.40); // EDITAR ISTO
-            System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO" + "\n"); // APENAS PARA TESTES
+            // System.out.print("CONFIRMO QUE O UTENTE TEM SEGURO" + "\n"); // APENAS PARA TESTES
             // ATRIBUI DESCONTO
         }
         else if (temSeguro.equals("N") || temSeguro.equals("n")) {
@@ -727,20 +730,17 @@ public class CentroMedico extends CentroMedicoPOO {
     }
 
     /**
-     * Atribuição do dia que irá ser "simulado". É aceite uma String como input mas a data é tratada como tipo de
-     * dado Date, internamente. (ver o método getDate da classe Consulta)
-     * @throws ParseException fundamental devido à conversão de String para SimpleDateFormat no método verificaData
-     * na classe Consulta
+     * Atribuição do dia que irá ser "simulado".
      */
 
-    public static void escolherDia() throws ParseException {
+    public static void escolherDia() {
 
         Scanner entradaDados = new Scanner(System.in,"Cp1252");
 
         System.out.println("Introduza o dia desejado: (formato DD/mm/aaaa)");
         String dia = entradaDados.nextLine();
 
-        diaAtual = Consulta.getDate(dia);
+        diaAtual = dia;
 
     }
 
@@ -765,11 +765,11 @@ public class CentroMedico extends CentroMedicoPOO {
 
         //////////////////////////////////////////////////////////////
         CentroMedico centroTeste = new CentroMedico();
-        Medico medicoAvaliado = new Medico("Ana", 32, 102346,"Urologia");
-        Medico medicoAvaliadoDois = new Medico("Bruno", 47, 103469, "Pediatria");
+        // Medico medicoAvaliado = new Medico("Ana", 32, 102346,"Urologia");
+        // Medico medicoAvaliadoDois = new Medico("Bruno", 47, 103469, "Pediatria");
         
-        medicos.add(medicoAvaliado);
-        medicos.add(medicoAvaliadoDois);
+        // medicos.add(medicoAvaliado);
+        // medicos.add(medicoAvaliadoDois);
 
         //Utente utenteConsulta = new Utente("Carlota",46,39123,0,0,true,null);
         //Utente utenteConsultaDois = new Utente("Carlos",20,39122,0,0,false,null);
@@ -781,7 +781,8 @@ public class CentroMedico extends CentroMedicoPOO {
 
         do {
 
-            System.out.println("1 - Registar um novo utente\n"
+            System.out.println("Data: " + diaAtual + "\n"
+                    + "1 - Registar um novo utente\n"
                     + "2 - Registar um novo médico\n"
                     + "3 - Realizar uma nova consulta de diagnóstico\n"
                     + "4 - Realizar uma nova consulta de resultados\n"
@@ -830,8 +831,8 @@ public class CentroMedico extends CentroMedicoPOO {
                     sair = false;
                     break;
                 case 10:
-                    avaliarAlguem(medicoAvaliado);
-                    avaliarAlguem(medicoAvaliadoDois);
+                    // avaliarAlguem(medicoAvaliado);
+                    // avaliarAlguem(medicoAvaliadoDois);
                     break;
                 case 11:
                     escolherDia();

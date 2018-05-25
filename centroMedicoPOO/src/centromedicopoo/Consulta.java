@@ -9,7 +9,7 @@ public class Consulta {
     private int numeroUtente;
     private int numeroMedico;
     private String data;
-    private double custoConsulta;
+    //private double custoConsulta;
 
     ////////////////////////// *** Construtores *** //////////////////////////
 
@@ -17,7 +17,7 @@ public class Consulta {
         this.numeroUtente = numeroUtente;
         this.numeroMedico = numeroMedico;
         this.data = data;
-        this.custoConsulta = custoConsulta;
+        //this.custoConsulta = custoConsulta;
     }
 
     public Consulta () {
@@ -55,9 +55,9 @@ public class Consulta {
      * @return custo da consulta
      */
 
-    public double getCustoConsulta() {
-        return custoConsulta;
-    }
+    //public double getCustoConsulta() {
+    //    return custoConsulta;
+    //}
 
     /**
      * Atribui um número de utente
@@ -82,9 +82,9 @@ public class Consulta {
      * @param custoConsulta custo de uma consulta
      */
 
-    public void setCustoConsulta(double custoConsulta) {
-        this.custoConsulta = custoConsulta;
-    }
+    //public void setCustoConsulta(double custoConsulta) {
+    //    this.custoConsulta = custoConsulta;
+    //}
 
     /**
      * Devolve a data de cada consulta

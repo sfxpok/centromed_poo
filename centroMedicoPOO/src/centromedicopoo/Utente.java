@@ -1,8 +1,5 @@
 package centromedicopoo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Utente extends Individuo {
     
     private int numeroUtente;
@@ -15,7 +12,7 @@ public class Utente extends Individuo {
     private double creditoCM;
     private boolean utentesAngariados;
     
-    private final int consultas_semana = 4;
+    private final int CONSULTAS_SEMANA = 4;
    
     ////////////////////////// *** Construtores *** //////////////////////////
 
@@ -41,10 +38,10 @@ public class Utente extends Individuo {
         this.temSeguro = temSeguro;
     }
 
-    public Utente(String nome, boolean temSeguro, double descontoAcumulado) {
+    public Utente(String nome, double descontoConsultas, double descontoExames) {
         super(nome);
-        this.temSeguro = temSeguro;
-        // this.descontoAcumulado = descontoAcumulado;
+        this.descontoConsultas = descontoConsultas;
+        this.descontoExames = descontoExames;
     }
     
     public Utente(String nome, int numeroUtente, String data){
