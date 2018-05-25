@@ -22,8 +22,9 @@ public class CentroMedico extends CentroMedicoPOO {
 
     private static int contadorInstanciasNumeroUtente = 0;
     private static int contadorInstanciasNumeroMedico = 0;
+    private static int contadorInstanciasNumeroConsulta = 0;
 
-    private static String diaAtual = "01/01/2018";
+    private static String diaAtual = "30/05/2018";
 
     private static final String FICHEIRO_UTENTES = "utentes.txt";
     private static final String FICHEIRO_MEDICOS = "medicos.txt";
@@ -115,14 +116,33 @@ public class CentroMedico extends CentroMedicoPOO {
             return true;
         }
     }
-    //metodo para devolver a lista de consultas com determinada data e numero de medico
-    /*public static ArrayList<Consulta> getConsultas(){
-        
-    }*/
-    
-    
-    
-    //metodo para adicionar 
+
+    public static boolean realizouConsultaDiag(String diaAtual, int numeroConsulta){
+        for(int i = 0; i < consultas.size(); i++){
+            if( consultas.get(i).getData().equals(diaAtual) && consultas.get(i).getNumeroConsulta() == numeroConsulta ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean realizarPagamentoAposResultado(int numeroConsulta){
+        //boolean realizar_pagamentos_apos_diagnostico = false;
+        boolean realizar_pagamentos_apos_resultado = false;
+        int numero_consultas = 0;
+
+        for(int i = 0; i < consultas.size(); i++){
+            if(consultas.get(i).getNumeroConsulta() == numeroConsulta){
+                numero_consultas++;
+            }
+        }
+        if(numero_consultas >= 2){
+            realizar_pagamentos_apos_resultado = true;
+        }else{
+            realizar_pagamentos_apos_resultado = false;
+        }
+        return realizar_pagamentos_apos_resultado;
+    }
     
     /**
      * Adiciona um utente à lista de utentes do centro médico
@@ -133,6 +153,7 @@ public class CentroMedico extends CentroMedicoPOO {
         String nome;
         int idade;
         int numeroUtente;
+        String utentesAngariados;
         String temSeguro;
 
         // Booleano que serve apenas de condição para adicionar um novo utente
@@ -148,12 +169,28 @@ public class CentroMedico extends CentroMedicoPOO {
         System.out.print("Idade: ");
         idade = entradaDados.nextInt();
 
+        System.out.print("O utente foi indicado por outro utente? S/N: " + "\n");
+
+        utentesAngariados = entradaDados.nextLine();
+        utentesAngariados = entradaDados.nextLine();
+
+        if (utentesAngariados.equals("S") || utentesAngariados.equals("s")) {
+            utente.setUtentesAngariados(true);
+        }
+        else if (utentesAngariados.equals("N") || utentesAngariados.equals("n")) {
+            utente.setUtentesAngariados(false);
+        }
+        else {
+            System.out.println("Valor inválido. Inserção de dados interrompida. Voltamos ao menu principal.");
+            return;
+        }
+
         System.out.print("O utente tem seguro? S/N: " + "\n");
 
         /* Tem que haver 2 linhas que fazem a mesma tarefa porque
         caso contrário não funciona */
 
-        temSeguro = entradaDados.nextLine();
+        // temSeguro = entradaDados.nextLine();
         temSeguro = entradaDados.nextLine();
 
         /* Condição para saber se a letra inserida corresponde a um
@@ -287,21 +324,22 @@ public class CentroMedico extends CentroMedicoPOO {
 
     public static void adicionarConsulta() throws ParseException {
         //para facilitar os testes, criacao de objectos utente e medico
-        // Utente utente1 = new Utente("Joao", 28, 33, true);
-        // Medico medico1 = new Medico("Luis", 99, 22, "Pediatria");
-        
+        Utente utente1 = new Utente("Joao", 28, 33, true);
+        Medico medico1 = new Medico("Luis", 99, 22, "Pediatria");
+
         int numeroUtente;
         int numeroMedico;
         String data_diagnostico, data_resultado;
         String consulta_resultado;
         String exame;
         long diferenca_entre_dias;
+        boolean consulta_unica = true;
 
         boolean numeroUtenteCorrecto = false;
         boolean numeroMedicoCorrecto = false;
 
         Scanner entradaDados = new Scanner(System.in, "Cp1252");
-        
+
         //declaração de variáveis do tipo consulta, onde vamos associar instâncias de consultaDiagnostico e consultaResultado (note-se o polimorfismo)
         Consulta consultaDiagnostico, consultaResultado;
         consultaDiagnostico = new ConsultaDiagnostico();
@@ -309,7 +347,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
         System.out.print("Insira o numero do utente que pretende adicionar à consulta: ");
         numeroUtente = entradaDados.nextInt();
-       
+
         for(int i = 0; i < utentes.size(); i++){
             if(utentes.get(i).getNumeroUtente() == numeroUtente){
                 numeroUtenteCorrecto = true;
@@ -326,7 +364,7 @@ public class CentroMedico extends CentroMedicoPOO {
 
         System.out.print("Insira o numero do medico para este utente: ");
         numeroMedico = entradaDados.nextInt();
-        
+
         //percore a lista dos medicos e verifica se o numeroMedico de input existe
         for(int i = 0; i < medicos.size(); i++){
             if(medicos.get(i).getNumeroMedico() == numeroMedico) {
@@ -341,65 +379,58 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("O numero esta correcto.");
         }else{
             System.out.println("O numero esta errado.");
-            return;
         }
-        
+
         //verificar se o limite de consultas por dia para determinado médico já foi atingido
         //if(getConsultas())
-        
+
         //String data = entradaDados.next();
         System.out.println("Insira a data para esta consulta, Formato: dd/MM/aaaa");
         data_diagnostico = entradaDados.next();
-        Date data_diag = consultaDiagnostico.getDate(data_diagnostico); 
-            
-        if( consultaDiagnostico.verificaData(data_diagnostico) && numeroMedicoCorrecto && numeroUtenteCorrecto ){
+        Date data_diag = consultaDiagnostico.getDate(data_diagnostico);
 
+        if( consultaDiagnostico.verificaData(data_diagnostico) && numeroMedicoCorrecto && numeroUtenteCorrecto ){
             consultaDiagnostico.setDataConsulta(data_diagnostico);
             consultaDiagnostico.setNumeroUtente(numeroUtente);
             consultaDiagnostico.setNumeroMedico(numeroMedico);
-
-            // Prestes a adicionar uma consulta de diagnóstico //
-
+            // consultaDiagnostico.setConsultaUnica(consulta_unica);
             if( podeMarcarConsulta(data_diagnostico,numeroMedico) ){
+                contadorInstanciasNumeroConsulta++;
+                consultaDiagnostico.setNumeroConsulta(contadorInstanciasNumeroConsulta);
                 consultas.add(consultaDiagnostico);
-                System.out.println("A consulta foi marcada com sucesso. " + "Numero de Utente: " + numeroUtente + " Numero do Medico: " + numeroMedico + " Data: " + data_diagnostico);
+                System.out.println("A consulta foi marcada com sucesso. " + "Numero de Utente: " + numeroUtente + " Numero do Medico: " + numeroMedico + " Data: " + data_diagnostico + " Numero da Consulta: " + contadorInstanciasNumeroConsulta);
             }else{
-                System.out.println("O limite de consultas diárias para o médico numero: " + numeroMedico + " foi atingido");     
+                System.out.println("O limite de consultas diárias para o médico numero: " + numeroMedico + " foi atingido");
             }
-
-            // Prestes a marcar o exame, para a consulta de resultados //
-
-            System.out.print("Pretende solicitar exame? ");
-            exame = entradaDados.next();
-
-            if(exame.equals("s") || exame.equals("S")){
-                System.out.println("O exame estará pronto dentro de 7 dias");
-            }else{
-                return;
-            }
-
-            // Prestes a adicionar uma consulta de resultados //
-
-            System.out.print("Insira a data pretendida para a consulta de resultado: ");
-            data_resultado = entradaDados.next();
-
-            Date data_resul = consultaDiagnostico.getDate(data_resultado);
-            diferenca_entre_dias = consultaDiagnostico.diferencaDias(data_resul,data_diag);
-
-            if( consultaResultado.verificaData(data_resultado) ){
+            if( realizouConsultaDiag(diaAtual,contadorInstanciasNumeroConsulta) ){
+                System.out.print("Pretende solicitar exame? ");
+                exame = entradaDados.next();
+                if(exame.equals("s") || exame.equals("S")){
+                    System.out.println("O exame estará pronto dentro de 7 dias");
+                }else{
+                    return;
+                }
+                System.out.print("Insira a data pretendida para a consulta de resultado: ");
+                data_resultado = entradaDados.next();
+                Date data_resul = consultaDiagnostico.getDate(data_resultado);
+                diferenca_entre_dias = consultaDiagnostico.diferencaDias(data_resul,data_diag);
+                if( consultaResultado.verificaData(data_resultado) ){
                     if( diferenca_entre_dias >= 8 ){
-
                         consultaResultado.setDataConsulta(data_resultado);
                         consultaResultado.setNumeroMedico(numeroMedico);
                         consultaResultado.setNumeroUtente(numeroUtente);
+                        consultaResultado.setNumeroConsulta(contadorInstanciasNumeroConsulta);
                         consultas.add(consultaResultado);
-                        System.out.println("A consulta de resultados foi marcada para o dia: " + data_resultado);
-
+                        //System.out.println("A consulta de resultados foi marcada para o dia: " + data_resultado);
+                        System.out.println("A consulta de resultado foi marcada com sucesso. " + "Numero de Utente: " + numeroUtente + " Numero do Medico: " + numeroMedico + " Data: " + data_diagnostico + " Numero da Consulta: " + contadorInstanciasNumeroConsulta);
                     }else{
                         System.out.println("A consulta de resultados só poderá ser marcada 8 dias após a consulta de diagnóstico.");
                     }
+                }else{
+                    System.out.println("A data é inválida");
+                }
             }else{
-                System.out.println("A data é inválida");
+                System.out.println("Esta consulta aguarda realização, então poderá ser solicitado um exame e marcada uma consulta de resultados");
             }
         }
     }
@@ -784,8 +815,8 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("Data: " + diaAtual + "\n"
                     + "1 - Registar um novo utente\n"
                     + "2 - Registar um novo médico\n"
-                    + "3 - Realizar uma nova consulta de diagnóstico\n"
-                    + "4 - Realizar uma nova consulta de resultados\n"
+                    + "3 - Marcar uma nova consulta (diagnóstico e/ou resultado)\n"
+                    + "4 - Realizar uma nova consulta (diagnóstico e/ou resultado)\n"
                     + "5 - Listar utentes\n"
                     + "6 - Listar médicos\n"
                     + "7 - Valor total que o centro médico já recebeu dos utentes\n"
@@ -813,7 +844,7 @@ public class CentroMedico extends CentroMedicoPOO {
                     adicionarConsulta();
                     break;
                 case 4:
-                    //
+                    realizarPagamentos();
                     break;
                 case 5:
                     menuListarUtentes();
@@ -1028,6 +1059,23 @@ public class CentroMedico extends CentroMedicoPOO {
 
     public static void listarConsultasMarcadas(){
         System.out.println("Este centro medico tem as seguintes consultas marcadas: "+"\n"+getConsultas()+"\n"+ "Numero de consultas: "+getConsultas().size()+"\n");
-    } 
+    }
+
+    public static void realizarPagamentos(){
+        int numeroConsulta;
+        Scanner scan = new Scanner(System.in,"cp1252");
+        System.out.println("Introduza o número da consulta a pagar.");
+        numeroConsulta = scan.nextInt();
+        if(realizarPagamentoAposResultado(numeroConsulta)){
+
+            // chama calculaCustos e debitaCreditoTresFases aqui
+            System.out.println("Pagamento referente a consulta de diagnósticos e resultados efectuado.");
+
+        }else{
+
+            // chama calculaCustos e debitaCredito aqui
+            System.out.println("Pagamento referente a consulta de diagnósticos efectuado.");
+        }
+    }
 
 }

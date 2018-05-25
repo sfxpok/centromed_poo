@@ -20,6 +20,11 @@ public class Pagamento extends Utente {
 
     }
 
+    /**
+     * Verifica se um utente tem seguro
+     * @param utentePaga utente que vai pagar
+     */
+
     public void verificaSeguro(Utente utentePaga){
         // Método que verifica se o Utente tem, ou não, seguro
 
@@ -28,6 +33,11 @@ public class Pagamento extends Utente {
             utentePaga.setDescontoExames(utentePaga.getDescontoExames() - 0.2);
         }
     }
+
+    /**
+     * Verifica se o utente tem acima de 65 anos
+     * @param utentePaga utente que vai pagar
+     */
 
     public void verificaIdoso(Utente utentePaga){
         // Método que verifica se o Utente é idoso (65 anos ou mais)
@@ -38,9 +48,30 @@ public class Pagamento extends Utente {
         }
     }
 
+    /**
+     * Verifica se o utente angariou alguém
+     * @param utentePaga utente que vai pagar
+     */
+
+    public void verificaUtentesAngariados(Utente utentePaga){
+        // Método que verifica se o Utente angariou novos utentes
+
+        if (utentePaga.getUtentesAngariados()){
+            utentePaga.setDescontoConsultas(utentePaga.getDescontoConsultas() - 0.05);
+            utentePaga.setDescontoExames(utentePaga.getDescontoExames() - 0.05);
+        }
+    }
+
+    /**
+     * Calcula quanto é que o utente vai pagar para uma consulta de diagnósticos e
+     * uma consulta de diagnósticos mais o exame (caso o mesmo peça)
+     * @param utentePaga utente que vai realizar o pagamento
+     * @param precoConsulta preço da consulta
+     * @param precoExame preço do exame
+     */
 
     public void calculaCustos(Utente utentePaga, int precoConsulta, int precoExame){
-        // TESTE: Calcula o custo da *CONSULTA*
+        // Calcula o custo da *CONSULTA*
         // e do *EXAME (CONSULTA + EXAME + RESULTADO)*
 
         // Método que executa as verificações (métodos acima descritos),
@@ -52,32 +83,39 @@ public class Pagamento extends Utente {
         /* Executa as verificações */
         verificaSeguro(utentePaga);
         verificaIdoso(utentePaga);
-        //verificaUtentesAngariados();
+        verificaUtentesAngariados(utentePaga);
         /* ----------------------- */
 
         custoConsulta = precoConsulta * utentePaga.getDescontoConsultas(); // diagnóstico só
         custoExame = (precoExame * utentePaga.getDescontoExames()) + custoConsulta; // diagnóstico, exame e resultados
     }
 
-    //////////////////// ALTERAR PARA AS CONSULTAS ////////////////////
+    /**
+     * Débito de crédito se o utente não pediu exame quando fez a consulta
+     * de diagnósticos
+     * @param utentePaga utente que vai pagar
+     */
 
     public void debitaCredito(Utente utentePaga) {
-        // TESTE: Retira o dinheiro da *Consulta*, falta a questão dos dias
+        // Retira o dinheiro da *Consulta*
 
         // Método que debita (retira) o crédito ou custo da consulta
 
         utentePaga.setCreditoCM(utentePaga.getCreditoCM() - custoConsulta);
     }
-//
+
+    /**
+     * Débito de crédito se o utente pediu exame quando fez a consulta
+     * de diagnósticos
+     * @param utentePaga utente que vai pagar
+     */
+
     public void debitaCreditoTresFases(Utente utentePaga){
-        // TESTE: Retira o dinheiro da *Consulta + Exame + Resultados*,
-        // falta a questão dos dias
+        // Retira o dinheiro da *Consulta + Exame + Resultados*,
 
         // Método que debita (retira) o crédito ou custo da consulta (resultado)
         utentePaga.setCreditoCM(utentePaga.getCreditoCM() - custoExame);
 
     }
-
-    //////////////////// //////////////////// //////////////////// ////////////////////
 
 }

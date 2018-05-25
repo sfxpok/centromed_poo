@@ -9,15 +9,16 @@ public class Consulta {
     private int numeroUtente;
     private int numeroMedico;
     private String data;
+    private int numeroConsulta;
     //private double custoConsulta;
 
     ////////////////////////// *** Construtores *** //////////////////////////
 
-    public Consulta(int numeroUtente, int numeroMedico, String data, double custoConsulta) {
+    public Consulta(int numeroUtente, int numeroMedico, String data, int numeroConsulta) {
         this.numeroUtente = numeroUtente;
         this.numeroMedico = numeroMedico;
         this.data = data;
-        //this.custoConsulta = custoConsulta;
+        this.numeroConsulta = numeroConsulta;
     }
 
     public Consulta () {
@@ -93,6 +94,14 @@ public class Consulta {
 
     public String getData(){
         return data;
+    }
+
+    public void setNumeroConsulta(int numeroConsulta){
+        this.numeroConsulta = numeroConsulta;
+    }
+
+    public int getNumeroConsulta(){
+        return numeroConsulta;
     }
     
     ////////////////////////////////////////////////////////////////////////////////
@@ -189,6 +198,7 @@ public class Consulta {
         info = "Numero utente: " + numeroUtente;
         info += " Numero medico: " + numeroMedico;
         info += " Data: " + data;
+        info += " Numero consulta: " + numeroConsulta;
         return info;
     }
     
