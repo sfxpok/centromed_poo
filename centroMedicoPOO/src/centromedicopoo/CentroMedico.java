@@ -284,8 +284,8 @@ public class CentroMedico extends CentroMedicoPOO {
 
     public static void adicionarConsulta() throws ParseException {
         //para facilitar os testes, criacao de objectos utente e medico
-        Utente utente1 = new Utente("Joao", 28, 33, true);
-        Medico medico1 = new Medico("Luis", 99, 22, "Pediatria");
+        // Utente utente1 = new Utente("Joao", 28, 33, true);
+        // Medico medico1 = new Medico("Luis", 99, 22, "Pediatria");
         
         int numeroUtente;
         int numeroMedico;
@@ -338,6 +338,7 @@ public class CentroMedico extends CentroMedicoPOO {
             System.out.println("O numero esta correcto.");
         }else{
             System.out.println("O numero esta errado.");
+            return;
         }
         
         //verificar se o limite de consultas por dia para determinado médico já foi atingido
@@ -349,33 +350,48 @@ public class CentroMedico extends CentroMedicoPOO {
         Date data_diag = consultaDiagnostico.getDate(data_diagnostico); 
             
         if( consultaDiagnostico.verificaData(data_diagnostico) && numeroMedicoCorrecto && numeroUtenteCorrecto ){
+
             consultaDiagnostico.setDataConsulta(data_diagnostico);
             consultaDiagnostico.setNumeroUtente(numeroUtente);
-            consultaDiagnostico.setNumeroMedico(numeroMedico);     
+            consultaDiagnostico.setNumeroMedico(numeroMedico);
+
+            // Prestes a adicionar uma consulta de diagnóstico //
+
             if( podeMarcarConsulta(data_diagnostico,numeroMedico) ){
                 consultas.add(consultaDiagnostico);
                 System.out.println("A consulta foi marcada com sucesso. " + "Numero de Utente: " + numeroUtente + " Numero do Medico: " + numeroMedico + " Data: " + data_diagnostico);
             }else{
                 System.out.println("O limite de consultas diárias para o médico numero: " + numeroMedico + " foi atingido");     
             }
+
+            // Prestes a marcar o exame, para a consulta de resultados //
+
             System.out.print("Pretende solicitar exame? ");
             exame = entradaDados.next();
+
             if(exame.equals("s") || exame.equals("S")){
                 System.out.println("O exame estará pronto dentro de 7 dias");
             }else{
                 return;
             }
+
+            // Prestes a adicionar uma consulta de resultados //
+
             System.out.print("Insira a data pretendida para a consulta de resultado: ");
             data_resultado = entradaDados.next();
+
             Date data_resul = consultaDiagnostico.getDate(data_resultado);
-            diferenca_entre_dias = consultaDiagnostico.daysBetween(data_resul,data_diag);
+            diferenca_entre_dias = consultaDiagnostico.diferencaDias(data_resul,data_diag);
+
             if( consultaResultado.verificaData(data_resultado) ){
                     if( diferenca_entre_dias >= 8 ){
+
                         consultaResultado.setDataConsulta(data_resultado);
                         consultaResultado.setNumeroMedico(numeroMedico);
                         consultaResultado.setNumeroUtente(numeroUtente);
                         consultas.add(consultaResultado);
                         System.out.println("A consulta de resultados foi marcada para o dia: " + data_resultado);
+
                     }else{
                         System.out.println("A consulta de resultados só poderá ser marcada 8 dias após a consulta de diagnóstico.");
                     }
