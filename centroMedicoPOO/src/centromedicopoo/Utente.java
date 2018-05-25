@@ -81,6 +81,11 @@ public class Utente extends Individuo {
         return descontoConsultas;
     }
 
+    /**
+     * Devolve o desconto que o utente tem nos exames
+     * @return desconto que o utente tem nos exames
+     */
+
     public double getDescontoExames() {
         return descontoExames;
     }
@@ -103,9 +108,19 @@ public class Utente extends Individuo {
         return temSeguro;
     }
 
+    /**
+     * Devolve o crédito de um utente
+     * @return crédito total que um utente tem
+     */
+
     public double getCreditoCM() {
         return creditoCM;
     }
+
+    /**
+     * Devolve se o utente angariou, ou não, utentes
+     * @return booleano se o utente angariou utentes
+     */
 
     public boolean getUtentesAngariados() {
         return utentesAngariados;
@@ -142,6 +157,11 @@ public class Utente extends Individuo {
         this.descontoConsultas = descontoConsultas;
     }
 
+    /**
+     * Atribui desconto que o utente recebe nos exames
+     * @param descontoExames desconto do utente nos exames
+     */
+
     public void setDescontoExames(double descontoExames) {
         this.descontoExames = descontoExames;
     }
@@ -164,13 +184,28 @@ public class Utente extends Individuo {
         this.temSeguro = temSeguro;
     }
 
+    /**
+     * Atribui crédito a um utente
+     * @param creditoCM crédito que um utente vai passar a ter
+     */
+
     public void setCreditoCM(double creditoCM) {
         this.creditoCM = creditoCM;
     }
 
+    /**
+     * Atribui um booleano se o utente angariou, ou não, utentes
+     * @param utentesAngariados booleano se o utente angariou utentes
+     */
+
     public void setUtentesAngariados(boolean utentesAngariados) {
         this.utentesAngariados = utentesAngariados;
     }
+
+    /**
+     * Devolve informação relevante do Utente
+     * @return conjunto de dados de utentes
+     */
 
     public String toString() {
         String info;

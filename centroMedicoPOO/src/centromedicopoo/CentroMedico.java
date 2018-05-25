@@ -1,19 +1,13 @@
 package centromedicopoo;
 
-import sun.java2d.pipe.SpanShapeRenderer;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Date;
-
-
 import java.text.DecimalFormat;
-
 import java.io.*;
 
 public class CentroMedico extends CentroMedicoPOO {
@@ -42,32 +36,69 @@ public class CentroMedico extends CentroMedicoPOO {
         medicos = new ArrayList<Medico>();
         consultas = new ArrayList<Consulta>();
     }
-    
-    //metodo para adicionar utentes à lista
+
+    /**
+     * Adiciona utentes à lista
+     * @param utente classe Utente com um conjunto de dados
+     */
+
     public static void addUtente(Utente utente){
         utentes.add(utente);
     }
-    //metodo para devolve a lista de utentes
+
+    /**
+     * Devolve uma lista de todos os utentes
+     * @return todos os utentes
+     */
+
     public static ArrayList<Utente> getUtentes(){
         return utentes;
     }
-    //metodo para adicionar medicos à lista
+
+    /**
+     * Adiciona médicos à lista
+     * @param medico classe Médico com um conjunto de dados
+     */
+
     public static void addMedico(Medico medico){
         medicos.add(medico);
     }
-     //metodo para devolve a lista de medicos
+
+    /**
+     * Devolve uma lista de todos os médicos
+     * @return todos os médicos
+     */
+
     public static ArrayList<Medico> getMedicos(){
         return medicos;
     }
-    //metodo para adicionar consultas à lista
+
+    /**
+     * Adiciona uma consulta à lista
+     * @param consulta classe Consulta com um conjunto de dados
+     */
+
     public static void addConsulta(ConsultaDiagnostico consulta){
         consultas.add(consulta);
     }
-     //metodo para devolver a lista de consultas
+
+    /**
+     * Devolve uma lista de todas as consultas
+     * @return todas as consultas
+     */
+
     public static ArrayList<Consulta> getConsultas(){
         return consultas;
     }
-    
+
+    /**
+     * Devolve um booleano se uma consulta pode, ou não, ser marcada. Verificamos isto ao passar pela lista de
+     * consultas e comparamos a data (...)
+     * @param data data em formato DD/MM/AAAA
+     * @param numeroMedico número único do médico
+     * @return booleano se pode ou não marcar uma consulta
+     */
+
     //metodo para verificar se o medico atingiu o limite de consultas para determinado dia
     public static boolean podeMarcarConsulta(String data, int numeroMedico){
         for(int i = 0; i < consultas.size(); i++){
@@ -244,6 +275,12 @@ public class CentroMedico extends CentroMedicoPOO {
         // System.out.print(medicoTeste.getIdade());
 
     }
+
+    /**
+     * Adiciona uma consulta à lista de consultas
+     * @throws ParseException fundamental devido à conversão de String para SimpleDateFormat no método verificaData
+     * na classe Consulta
+     */
 
     public static void adicionarConsulta() throws ParseException {
         //para facilitar os testes, criacao de objectos utente e medico
@@ -588,40 +625,9 @@ public class CentroMedico extends CentroMedicoPOO {
         }
     }
 
-    public static void menuGerirCredito() {
-
-        boolean sair = true;
-
-        do {
-
-            System.out.println("----- Gestão de crédito -----\n"
-                    + "1 - Depositar crédito\n"
-                    + "2 - Retirar crédito\n"
-                    + "3 - Voltar atrás\n");
-
-            Scanner entradaDados = new Scanner(System.in, "Cp1252");
-            int op;
-
-            System.out.print("Escolha uma opção: ");
-            op = entradaDados.nextInt();
-
-            switch(op) {
-                case 1:
-                    depositarCredito();
-                    break;
-                case 2:
-                    retirarCredito();
-                    break;
-                case 3:
-                    sair = false;
-                    break;
-                default:
-                    System.out.println("\nValor inválido\n");
-            }
-
-        } while(sair);
-
-    }
+    /**
+     * Deposita crédito na conta de um utente desejado pelo utilizador.
+     */
 
     public static void depositarCredito() {
 
@@ -646,7 +652,7 @@ public class CentroMedico extends CentroMedicoPOO {
             }
         }
         if(numeroUtenteCorrecto){
-            System.out.println("O numero esta correcto"); // ajustar isto
+            System.out.println("O numero esta correcto");
         }else{
             System.out.println("O numero esta errado");
             return;
@@ -660,6 +666,11 @@ public class CentroMedico extends CentroMedicoPOO {
         utenteCredito.setCreditoCM(somaCredito);
 
     }
+
+    /**
+     * Retira crédito de uma conta de um utente desejado pelo utilizador.
+     * NOTA: Este método não tem qualquer utilidade, no entanto, podia ser aproveitado para alguma coisa.
+     */
 
     public static void retirarCredito() {
 
@@ -698,6 +709,13 @@ public class CentroMedico extends CentroMedicoPOO {
         utenteCredito.setCreditoCM(subtrCredito);
 
     }
+
+    /**
+     * Atribuição do dia que irá ser "simulado". É aceite uma String como input mas a data é tratada como tipo de
+     * dado Date, internamente. (ver o método getDate da classe Consulta)
+     * @throws ParseException fundamental devido à conversão de String para SimpleDateFormat no método verificaData
+     * na classe Consulta
+     */
 
     public static void escolherDia() throws ParseException {
 
@@ -901,6 +919,45 @@ public class CentroMedico extends CentroMedicoPOO {
 
     }
 
+    /**
+     * Menu de gestão do crédito
+     */
+
+    public static void menuGerirCredito() {
+
+        boolean sair = true;
+
+        do {
+
+            System.out.println("----- Gestão de crédito -----\n"
+                    + "1 - Depositar crédito\n"
+                    + "2 - Retirar crédito\n"
+                    + "3 - Voltar atrás\n");
+
+            Scanner entradaDados = new Scanner(System.in, "Cp1252");
+            int op;
+
+            System.out.print("Escolha uma opção: ");
+            op = entradaDados.nextInt();
+
+            switch(op) {
+                case 1:
+                    depositarCredito();
+                    break;
+                case 2:
+                    retirarCredito();
+                    break;
+                case 3:
+                    sair = false;
+                    break;
+                default:
+                    System.out.println("\nValor inválido\n");
+            }
+
+        } while(sair);
+
+    }
+
     /////////////////////////////////////////////////////
     ///////////                               ///////////
     ///////////                               ///////////
@@ -947,7 +1004,11 @@ public class CentroMedico extends CentroMedicoPOO {
         }
 
     }
-    
+
+    /**
+     * Listagem das consultas marcadas e, quantas é que foram marcadas.
+     */
+
     public static void listarConsultasMarcadas(){
         System.out.println("Este centro medico tem as seguintes consultas marcadas: "+"\n"+getConsultas()+"\n"+ "Numero de consultas: "+getConsultas().size()+"\n");
     } 

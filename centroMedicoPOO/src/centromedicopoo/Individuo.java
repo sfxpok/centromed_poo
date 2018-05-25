@@ -59,7 +59,11 @@ public class Individuo {
         this.idade = idade;
     }
 
-    //metodo toString
+    /**
+     * Devolve informação relevante do Individuo
+     * @return conjunto de dados relevantes da classe
+     */
+
     public String toString() {
         String info;
         info = "Nome: " + nome + " || ";

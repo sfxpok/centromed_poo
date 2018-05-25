@@ -1,9 +1,7 @@
 package centromedicopoo;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Consulta {
@@ -34,31 +32,65 @@ public class Consulta {
 
     ////////////////////////// *** Getters e setters *** //////////////////////////
 
+    /**
+     * Devolve o número de utente
+     * @return número de utente
+     */
+
     public int getNumeroUtente(){
         return numeroUtente;
     }
+
+    /**
+     * Devolve o número de médico
+     * @return número de médico
+     */
 
     public int getNumeroMedico(){
         return numeroMedico;
     }
 
+    /**
+     * Devolve o custo da consulta
+     * @return custo da consulta
+     */
+
     public double getCustoConsulta() {
         return custoConsulta;
     }
+
+    /**
+     * Atribui um número de utente
+     * @param numeroUtente número de utente único
+     */
 
     public void setNumeroUtente(int numeroUtente){
         this.numeroUtente = numeroUtente;
     }
 
+    /**
+     * Atribui um número de médico
+     * @param numeroMedico número de médico único
+     */
+
     public void setNumeroMedico(int numeroMedico){
         this.numeroMedico = numeroMedico;
     }
+
+    /**
+     * Atribui um custo a uma consulta
+     * @param custoConsulta custo de uma consulta
+     */
 
     public void setCustoConsulta(double custoConsulta) {
         this.custoConsulta = custoConsulta;
     }
 
-    //metodo que devolve a data de cada consulta
+    /**
+     * Devolve a data de cada consulta
+     * @return data da consulta
+     */
+
     public String getData(){
         return data;
     }
@@ -77,12 +109,22 @@ public class Consulta {
         medicos.add(medico);
     } // adicionar um médico à consulta*/
 
+    /**
+     * Atribui uma data à consulta
+     * @param data data da consulta
+     */
+
     public void setDataConsulta(String data){
         this.data = data;
     } // adicionar uma data à consulta
 
-    /* O método seguinte recebe uma data (dd/mm/aaaa) em formato de string
-     * e devolve no tipo de dado SimpleDateFormat que corresponde a uma data */
+    /**
+     * O método recebe uma data (DD/MM/AAAA) no tipo de dado String e devolve no tipo de dado
+     * SimpleDateFormat que corresponde a uma data.
+     * @param data data de uma consulta no tipo de dado String
+     * @return booleano se a data foi escrita de forma correta
+     */
+
     public boolean verificaData(String data)
     {
 
@@ -112,20 +154,36 @@ public class Consulta {
         // se chegarmos até aqui nas verificações iremos assumir que o formato da data está correcta
         return true;
     }
-    
-    //parsing do input string para data
+
+    /**
+     * Parsing de uma data de String para Date
+     * @param date data da consulta
+     * @return Data no argumento no tipo de dado Date
+     * @throws ParseException
+     */
+
     public static Date getDate(String date) throws ParseException{
         SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
         return df.parse(date);
     }
-    
-    //diferença entre os dias introduzidos
-    public long daysBetween(Date one, Date two){
-        long difference = ( one.getTime() - two.getTime() ) / 86400000;
-        return Math.abs(difference);
+
+    /**
+     * Diferença entre dois dias introduzidos
+     * @param dataInicio ponto inicial de comparação
+     * @param dataFinal ponto final de comparação
+     * @return diferença de dias
+     */
+
+    public long diferencaDias(Date dataInicio, Date dataFinal){
+        long diferenca = ( dataInicio.getTime() - dataFinal.getTime() ) / 86400000;
+        return Math.abs(diferenca);
     }
-    
-    //metodo toString
+
+    /**
+     * Devolve informação relevante à Consulta
+     * @return conjunto de dados da Consulta
+     */
+
     public String toString(){
         String info;
         info = "Numero utente: " + numeroUtente;

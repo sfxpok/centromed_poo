@@ -146,9 +146,18 @@ public class Medico extends Individuo {
         }
     }*/
 
+    /**
+     * Atribui o número de avaliações a um médico
+     * @param numAvaliacoes número de avaliações realizadass
+     */
+
     public void setNumAvaliacoes(int numAvaliacoes) { this.numAvaliacoes = numAvaliacoes; }
-    
-    //metodo toString
+
+    /**
+     * Devolve informação relevante do Medico
+     * @return conjunto de dados do Medico
+     */
+
     public String toString() {
         String info;
         info = super.toString() + " ";
